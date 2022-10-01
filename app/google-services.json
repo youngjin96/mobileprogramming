@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "61658257706",
+    "project_id": "shalendar-c4c14",
+    "storage_bucket": "shalendar-c4c14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61658257706:android:4a965fd990eddcea192653",
+        "android_client_info": {
+          "package_name": "com.team9.shalendar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61658257706-ktea59cem09nrropuvrogck4ughtt3jp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.team9.shalendar",
+            "certificate_hash": "9837ae0319d1d35154163e8d49630624f1aabbf1"
+          }
+        },
+        {
+          "client_id": "61658257706-j72vp6v31ujgsusdeerbl78g060ukuse.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoju1pm6nDQrLb2A7SoY9Ahz_axvcjGLw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61658257706-j72vp6v31ujgsusdeerbl78g060ukuse.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
