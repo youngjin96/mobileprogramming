@@ -32,6 +32,10 @@
 <!--        tools:ignore="MissingConstraints"-->
 <!--        tools:layout_editor_absoluteY="34dp" />-->
 
+    <navigation>
+
+    </navigation>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
