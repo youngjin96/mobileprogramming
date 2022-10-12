@@ -36,8 +36,10 @@ class MainActivity : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // TODO : 다음 화면으로 넘어가기
+                        startActivity(Intent(this, AddCalendar::class.java))
+
                     } else {
+
                         Toast.makeText(baseContext, "이메일 또는 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
                     }
                 }
