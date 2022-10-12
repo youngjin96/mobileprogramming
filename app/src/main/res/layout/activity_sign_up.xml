@@ -12,19 +12,19 @@
         android:layout_height="83dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="26dp"
         android:text="회원가입"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="68dp"
         android:text="이메일"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextEmail"
         app:layout_constraintEnd_toStartOf="@+id/editTextEmail" />
@@ -40,14 +40,19 @@
         app:layout_constraintStart_toEndOf="@+id/textViewSignUp"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!--        tools:layout_editor_absoluteX="38dp"-->
+<!--        tools:layout_editor_absoluteY="215dp" />-->
+
+    <!--        tools:layout_editor_absoluteX="45dp" />-->
+
     <TextView
         android:id="@+id/textViewPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
+        android:layout_marginEnd="56dp"
         android:text="비밀번호"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/textViewRepeatPassword" />
+        app:layout_constraintEnd_toStartOf="@+id/editTextPassword" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -63,8 +68,8 @@
         android:id="@+id/textViewRepeatPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="22dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
         android:text="비밀번호확인"
         app:layout_constraintEnd_toStartOf="@+id/editTextRepeatPassword"
         app:layout_constraintTop_toTopOf="@+id/editTextRepeatPassword" />
@@ -73,7 +78,7 @@
         android:id="@+id/editTextRepeatPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="@+id/editTextPassword"
@@ -88,13 +93,14 @@
         android:text="닉네임"
         app:layout_constraintBaseline_toBaselineOf="@+id/editTextNickName"
         app:layout_constraintEnd_toEndOf="@+id/textViewBirth"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textViewRepeatPassword" />
 
     <EditText
         android:id="@+id/editTextNickName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/editTextRepeatPassword"
@@ -114,10 +120,10 @@
         android:id="@+id/editTextBirth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:ems="10"
+        android:layout_marginTop="16dp"
         android:clickable="false"
         android:cursorVisible="false"
+        android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="@+id/editTextNickName"
@@ -139,8 +145,8 @@
         android:id="@+id/buttonComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="68dp"
         android:text="가입완료"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
