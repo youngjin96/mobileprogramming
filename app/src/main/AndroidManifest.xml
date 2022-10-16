@@ -29,6 +29,10 @@
             android:name=".AddCalendar"
         />
 
+
+
     </application>
+
+
 
 </manifest>
