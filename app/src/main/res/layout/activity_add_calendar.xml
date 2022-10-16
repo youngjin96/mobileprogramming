@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="250dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
     tools:context=".AddCalendar">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/navbar_open"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/nav_hearder_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#D3C7EA"
-        android:fitsSystemWindows="true"
+        android:background="#FFFFFF"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"></com.google.android.material.navigation.NavigationView>
 
 
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

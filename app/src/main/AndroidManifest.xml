@@ -18,7 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddCalendar"
+            android:name=".AddCalendar"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         />
 
 
