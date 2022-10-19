@@ -4,6 +4,11 @@
     tools:showIn="navigation_view">
 
     <item
+        android:id="@+id/navbar_close"
+        android:icon="@drawable/navbar_close"
+        android:title="" />
+
+    <item
         android:id="@+id/nav_info_change"
         android:title="개인정보변경"
         />

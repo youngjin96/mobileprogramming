@@ -30,9 +30,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#FFFFFF"
-        app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
         tools:ignore="MissingConstraints"></com.google.android.material.navigation.NavigationView>
 
-
+<!--    app:headerLayout="@layout/nav_header"-->
 </androidx.drawerlayout.widget.DrawerLayout>
