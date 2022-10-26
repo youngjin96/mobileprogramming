@@ -1,5 +1,6 @@
 package com.example.shalendar
 
+import android.content.Intent
 import android.os.Bundle
 import android.system.Os.access
 import android.view.Gravity
@@ -31,10 +32,10 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     override fun onNavigationItemSelected(item: MenuItem): Boolean { //네비게이션 아이템 클릭시 수행
 
         when (item.itemId) {
-            R.id.nav_info_change -> Toast.makeText(applicationContext, "개인정보변경", Toast.LENGTH_SHORT).show()
-            R.id.nav_enquiry -> Toast.makeText(applicationContext, "문의사항", Toast.LENGTH_SHORT).show()
-            R.id.nav_event-> Toast.makeText(applicationContext, "이벤트", Toast.LENGTH_SHORT).show()
-            R.id.nav_configuration -> Toast.makeText(applicationContext, "환경설정", Toast.LENGTH_SHORT).show()
+            R.id.nav_info_change ->  startActivity(Intent(this, InfoChange::class.java))
+            R.id.nav_enquiry -> startActivity(Intent(this, Enquiry::class.java))
+            R.id.nav_event-> startActivity(Intent(this, Event::class.java))
+            R.id.nav_setting -> startActivity(Intent(this, Setting::class.java))
             R.id.nav_logout -> Toast.makeText(applicationContext, "로그아웃", Toast.LENGTH_SHORT).show()
         }
 
@@ -48,7 +49,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     override fun onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
             {
-
                 drawerLayout.closeDrawers()
              }
         else{

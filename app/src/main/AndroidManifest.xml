@@ -21,13 +21,24 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".AddCalendar"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         />
+        <activity
+            android:name=".Enquiry"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+        <activity
+            android:name=".Event"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+        <activity
+            android:name=".InfoChange"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+        <activity
+            android:name=".Setting"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
 
 
 
