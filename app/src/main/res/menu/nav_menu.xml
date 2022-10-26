@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/navbar_close"
+        android:icon="@drawable/navbar_close"
+        android:title="" />
+
+    <item
+        android:id="@+id/nav_info_change"
+        android:icon="@drawable/info_change_icon"
+        android:title="개인정보변경"
+        />
+    <item
+        android:id="@+id/nav_enquiry"
+        android:icon="@drawable/enquiry_icon"
+        android:title="문의사항"/>
+    <item
+        android:id="@+id/nav_event"
+        android:icon="@drawable/event_icon"
+        android:title="이벤트"/>
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/setting_icon"
+        android:title="환경설정"/>
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/logout_icon"
+        android:title="로그아웃"/>
+
+
+
+
+</menu>
