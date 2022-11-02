@@ -29,8 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:text="달력 제목"></TextView>
 
         <EditText
@@ -39,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:ems="10"
-            android:padding="10dp"
+            android:layout_margin="15dp"
             android:inputType="textPersonName"
             android:text="Name"
             tools:ignore="TouchTargetSizeCheck" />
@@ -48,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:padding="2dp">
+            android:padding="20dp">
 
             <Button
                 android:id="@+id/dialog_append_button"
@@ -57,6 +56,11 @@
                 android:layout_weight="1"
                 android:background="@drawable/background_btn_color"
                 android:text="생성" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"/>
 
 
             <Button
