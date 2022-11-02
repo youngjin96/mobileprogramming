@@ -3,7 +3,6 @@ package com.example.shalendar
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import kotlinx.android.synthetic.main.activity_add_calendar.*
 
 class Enquiry:AppCompatActivity() {
 
