@@ -43,6 +43,13 @@
             android:layout_marginEnd="40sp"
             />
 
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:layout_marginTop="8sp"/>
+
+
         <EditText
             android:id="@+id/IDText"
             android:layout_width="match_parent"
@@ -51,7 +58,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="변경할 아이디를 입력하세요"
+            android:hint="아이디를 입력하세요"
             />
 
     </LinearLayout>
@@ -76,6 +83,12 @@
             android:layout_marginEnd="40sp"
             />
 
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="Nickname"
+            android:layout_marginTop="8sp"/>
+
         <EditText
             android:id="@+id/NicknameText"
             android:layout_width="match_parent"
@@ -84,7 +97,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="변경할 닉네임을 입력하세요"
+            android:hint="닉네임을 입력하세요"
             />
 
     </LinearLayout>
@@ -108,6 +121,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="25sp"
             />
+
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="TelNum"
+            android:layout_marginTop="8sp"/>
 
         <EditText
             android:id="@+id/TelNumText"
@@ -142,6 +161,12 @@
             android:layout_marginEnd="51sp"
             />
 
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:layout_marginTop="8sp"/>
+
         <EditText
             android:id="@+id/AddressText"
             android:layout_width="match_parent"
@@ -160,6 +185,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="적용"
+        android:textColor="@color/white"
+        android:background="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="25dp"
