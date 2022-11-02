@@ -1,5 +1,4 @@
 module.exports = app =>{
-    const calendars = require("../controllers/calendar.controller.js");
-
-    app.get("/calendars", calendars.calendarSearch);
+    const calendar = require("../controllers/calendar.controller.js");
+    app.post("/calendar", calendar.deleteCalendar);
 };

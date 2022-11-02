@@ -7,8 +7,8 @@ const User = function (user) {
     this.birth = user.birth;
 };
 
-User.putuser = result => {
-    sql.query('INSERT INTO users(id, email, nick_name, birth) VALUES ("32871", "apple@xmail.com", "juan", "2000-02-08")', (err, res) => {
+User.putuser = (data, result) => {
+    sql.query('INSERT INTO user(id, email, nick_name, birth) VALUES (?, ?, ?, ?)', [data.id, data.email, data.nick_name, data.birth], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -19,7 +19,7 @@ User.putuser = result => {
 };
 
 User.search = result => {
-    sql.query('SELECT DISTINCT nick_name from users', (err, res) => {
+    sql.query('SELECT DISTINCT nick_name from user', (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -31,7 +31,7 @@ User.search = result => {
 
 var nick="juan";
 User.searchnick = result => {
-    sql.query('SELECT nick_name from users', (err, res) => {
+    sql.query('SELECT nick_name from user', (err, res) => {
         var nick_list = [];
         for(let i=0; i<Object.keys(res).length; i++){
             if(res[i].nick_name == nick)

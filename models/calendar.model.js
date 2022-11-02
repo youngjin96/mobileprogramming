@@ -1,4 +1,7 @@
 const sql = require("./db.js");
+const microTime = require("microtime")
+
+var id = microTime.now()
 
 const Calendar = function (calendar) {
     this.id = calendar.id;
@@ -7,10 +10,8 @@ const Calendar = function (calendar) {
     this.person_num = calendar.person_num;
 };
 
-const microTime = require('microtime');
-
-Calendar.createtable = result => { 
-    sql.query('CREATE TABLE calendar (id INT AUTO_INCREMENT PRIMARY KEY, user_id VARCHAR(28), name VARCHAR(15), person_num INT)', (err, res) => {
+Calendar.createCalendar = (data, result) => {
+    sql.query('INSERT INTO calendar (id, user_id, name, person_num) VALUES (?, ?, ?, ?)', [id, data.user_id, data.name, data.person_num], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -20,18 +21,19 @@ Calendar.createtable = result => {
     });
 };
 
-Calendar.inserttable = result => { 
-    sql.query('INSERT INTO calendar (id, user_id, name, person_num) VALUES (, "12245", "cal2", "4")', (err, res) => {
+Calendar.deleteCalendar = (data, result) => {
+    sql.query('delete from calendar WHERE (id=? AND user_id=?)', [data.id, data.user_id], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
         result(null, res);
-    });
-}
+    });                
+};
 
-Calendar.calendarsearch = result => {
+
+Calendar.searchCalendar = result => {
     sql.query('SELECT * from calendar', (err, res) => {
         if (err) {
             console.log("error: ", err);
