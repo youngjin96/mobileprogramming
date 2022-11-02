@@ -1,6 +1,10 @@
 module.exports = app =>{
     const users = require("../controllers/signUp.controller.js");
 
-    // 전체 조회 
-    app.get("/users", users.findAll);
+    app.get("/user", users.findAll)
+
+    
+    //app.get("/user", users.putUser); // insert
+    //app.get("/user", users.cheakAll); // check
+    //app.get("/user/search/", users.serchAll); // serch
 };
