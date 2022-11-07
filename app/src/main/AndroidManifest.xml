@@ -42,8 +42,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".InfoChange" />
         <activity
-            android:name=".Setting"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".Setting"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
     </application>
 
 </manifest>
