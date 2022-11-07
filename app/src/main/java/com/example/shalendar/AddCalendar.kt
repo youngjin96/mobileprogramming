@@ -12,6 +12,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
 import com.example.shalendar.databinding.ActivityAddCalendarBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -54,7 +56,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
                         buffered.close()
                         conn.disconnect()
-
                         println(content)
                     } else {
                         println("서버 꺼짐")
@@ -77,7 +78,10 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             R.id.nav_enquiry -> startActivity(Intent(this, Enquiry::class.java))
             R.id.nav_event-> startActivity(Intent(this, Event::class.java))
             R.id.nav_setting -> startActivity(Intent(this, Setting::class.java))
-            R.id.nav_logout -> Toast.makeText(applicationContext, "로그아웃", Toast.LENGTH_SHORT).show()
+            R.id.nav_logout -> {
+                Firebase.auth.signOut()
+                startActivity(Intent(this, MainActivity::class.java))
+            }
         }
         binding.drawerLayout.closeDrawers() //네비게이션 뷰 닫기
         return false
