@@ -14,7 +14,7 @@ var num = "9";
 const microTime = require('microtime');
 var id = microTime.now();
 
-console.log(typeof(id));
+console.log(id);
 //INSERT INTO users(id, email, nick_name, birth) VALUES ("1234", "dhsh1214@naver.com", "hyun", "2001-04-12")
 //https://sol2gram.tistory.com/28 - 중복xid만들기
 //var sql = "CREATE TABLE hz_member (mb_id INT AUTO_INCREMENT PRIMARY KEY, mb_name VARCHAR(255), mb_level VARCHAR(255))";
@@ -40,8 +40,18 @@ Calendar.calendarserch = result => {
         result(null, res);
     });
 };
-Calendar.putUser = result => {
-    sql.query('INSERT INTO calendar(id, user_id, name, person_num) VALUES (?,?,?,?)',[id, "4231", "hyun", "2"], (err, res) => {
+Calendar.createCalendar = (data,result) => {
+    sql.query('INSERT INTO calendar(id, user_id, name, person_num) VALUES (?,?,?,?)',[id, data.user_id, data.name, data.person_num], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });
+};
+Calendar.deleteCalendar = (data,result) => {
+    sql.query('INSERT INTO calendar(id, user_id, name, person_num) VALUES (?,?,?,?)',[id, data.user_id, data.name, data.person_num], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

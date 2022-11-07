@@ -6,11 +6,16 @@ const app = express();
 const PORT = 5000;
 
 app.use(cors());
+
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 
-require("./routes/signUp.routes.js")(app);
+require("./routes/calendar.routes.js")(app);
+require("./routes/user.routes.js")(app);
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
