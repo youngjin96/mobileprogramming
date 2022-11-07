@@ -10,6 +10,7 @@ import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -22,16 +23,22 @@ import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
 
+
 class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private var mBinding : ActivityAddCalendarBinding? = null
     private val binding get() = mBinding!!
 
     private var dialog01: Dialog? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityAddCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+//        다이얼로그 창 띄우면 뒤에 화면 어둡게
 
         dialog01 = Dialog(this@AddCalendar) // Dialog 초기화
         dialog01!!.requestWindowFeature(Window.FEATURE_NO_TITLE) // 타이틀 제거
@@ -92,8 +99,8 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     fun showDialog01() {
         dialog01!!.show() // 다이얼로그 띄우기
         dialog01!!.findViewById<View>(R.id.dialog_append_button).setOnClickListener { // 원하는 기능 구현
-//            val intent = Intent(applicationContext, SignUpActivity::class.java)
-//            startActivity(intent)
+            startActivity(Intent(this, Afteraddcalendar::class.java))
+
         }
         val noBtn = dialog01!!.findViewById<Button>(R.id.dialog_close_button)
         noBtn.setOnClickListener {

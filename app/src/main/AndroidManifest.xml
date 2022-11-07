@@ -42,6 +42,9 @@
         <activity
             android:name=".Setting"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
+        <activity
+            android:name=".Afteraddcalendar"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
 
 
 
