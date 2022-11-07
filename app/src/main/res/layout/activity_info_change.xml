@@ -1,15 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InfoChange">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="개인정보 변경 "
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/IDLayout"
+        android:textAlignment="viewStart"
+        android:paddingStart="20dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/IDLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Text"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:id="@+id/ID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디: "
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="40sp"
+            />
+
+        <EditText
+            android:id="@+id/IDText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="변경할 아이디를 입력하세요"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/NicknameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IDLayout"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/Nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임: "
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="40sp"
+            />
+
+        <EditText
+            android:id="@+id/NicknameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="변경할 닉네임을 입력하세요"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/TelnumLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/NicknameLayout"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/TelNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전화번호: "
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="25sp"
+            />
+
+        <EditText
+            android:id="@+id/TelNumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="변경할 전화번호를 입력하세요"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/AddressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TelnumLayout"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주소: "
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="51sp"
+            />
+
+        <EditText
+            android:id="@+id/AddressText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="변경할 주소를 입력하세요"
+            />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/Personal_info_change_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="개인정보변경 test"
+        android:text="적용"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="35dp"
         android:textSize="34sp" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
