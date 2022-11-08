@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 require("./routes/user.routes.js")(app);
 require("./routes/calendar.routes.js")(app);
+require("./routes/friend.routes.js")(app);
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
