@@ -3,4 +3,6 @@ module.exports = app =>{
 
     // 전체 조회 
     //app.post("/user", user.putUser);
+    //app.post("/user", user.updateUser);
+    app.get("/user", user.getAll);
 };

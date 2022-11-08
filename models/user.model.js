@@ -7,7 +7,7 @@ const User = function (user) {
     this.birth = user.birth;
 };
 
-User.putuser = (data, result) => {
+User.putUser = (data, result) => {
     sql.query('INSERT INTO user(id, email, nick_name, birth) VALUES (?, ?, ?, ?)', [data.id, data.email, data.nick_name, data.birth], (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -16,6 +16,28 @@ User.putuser = (data, result) => {
         }
         result(null, res);
     });
+};
+
+User.updateUser = (data, result) => {
+    sql.query('UPDATE user SET email = ?, nick_name = ?, birth = ? WHERE id = ?', [data.email, data.nick_name, data.birth, data.id], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });
+};
+
+User.getAll = result => {
+    sql.query('SELECT * from user', (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });                
 };
 
 User.search = result => {
