@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 
 require("./routes/calendar.routes.js")(app);
 require("./routes/user.routes.js")(app);
-
+require("./routes/schedule.routes.js")(app);
 
 
 

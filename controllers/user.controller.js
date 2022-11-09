@@ -1,7 +1,7 @@
 const User = require("../models/user.model.js");
 
-exports.findAll = (req, res) => {
-    User.getAll((err, data) => {
+exports.getAllUser = (req, res) => { // 모든유저
+    User.getAllUser((err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -10,7 +10,7 @@ exports.findAll = (req, res) => {
         else res.send(data);
     });
 };
-exports.putUser = (req, res) => {
+exports.createUser = (req, res) => { //유저추가
     var data = {
         id : req.body.id,
         email: req.body.email,
@@ -27,8 +27,26 @@ exports.putUser = (req, res) => {
         else res.send(data);
     });
 };
-exports.cheakAll = (req, res) => {
-    User.cheakAll((err, data) => {
+exports.cheakUser = (req, res) => { //유저검색
+    var data = {
+        nick_name : req.body.nick_name,
+    }
+    User.cheakUser(data, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+exports.deleteUser = (req, res) => {//유저삭제
+    var data = {
+        id : req.body.id,
+        nick_name : req.body.nick_name,
+    }
+    
+    User.deleteUser(data,(err, data) => {
         if (err)
             res.status(500).send({
                 message:

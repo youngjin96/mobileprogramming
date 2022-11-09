@@ -1,12 +1,12 @@
 
 const Calendar = require("../models/calendar.model.js");
 
-exports. createTable = (req, res) => {
-    Calendar.createtable((err, data) => {
+exports. createCalendarTable = (req, res) => {
+    Calendar.createCalendarTable((err, data) => {
         if (err)
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving users."
+                    err.message || "Some error occurred while retrieving calendar."
             });
         else res.send(data);
     });
@@ -17,7 +17,7 @@ exports.calendarSerchAll = (req, res) => {
         if (err)
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving users."
+                    err.message || "Some error occurred while retrieving calendar."
             });
             else res.send(data);
     });
@@ -32,23 +32,7 @@ exports.createCalendar = (req, res) => {
         if (err)
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        else 
-        {
-            res.send(data);
-        }
-    });
-};
-exports.deleteCalendar = (req, res) => {
-    var data = {
-        
-    }
-    Calendar.deleteCalendar(data,(err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
+                    err.message || "Some error occurred while retrieving calendar."
             });
         else 
         {
