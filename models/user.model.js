@@ -3,7 +3,7 @@ const sql = require("./db.js");
 const User = function (user) {
     this.id = user.id;
     this.email = user.email;
-    this.nickName = user.nick_name;
+    this.nick_name = user.nick_name;
     this.birth = user.birth;
 };
 
@@ -40,7 +40,7 @@ User.getAll = result => {
     });                
 };
 
-User.search = result => {
+User.searchUser = result => {
     sql.query('SELECT DISTINCT nick_name from user', (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -51,24 +51,22 @@ User.search = result => {
     });                
 };
 
-var nick="juan";
-User.searchnick = result => {
-    sql.query('SELECT nick_name from user', (err, res) => {
-        var nick_list = [];
+User.searchUserByNick = (data, result) => {
+    sql.query('SELECT * from user', (err, res) => {
+        var found_list = [];
         for(let i=0; i<Object.keys(res).length; i++){
-            if(res[i].nick_name == nick)
-            nick_list.push(nick)
+            if(res[i].nick_name == data.nick_name)
+            found_list.push(res[i])
         }
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
-        if(nick_list.length == 0)
+        if(found_list.length == 0)
             result(null, "유저 없음");
         else
-            result(null, nick_list[0]);
-
+            result(null, found_list);
     });
 };
 

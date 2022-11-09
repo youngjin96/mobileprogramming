@@ -1,13 +1,12 @@
-const User = require("../models/user.model.js");
+const Friend = require("../models/friend.model.js");
 
-exports.putUser = (req, res) => {
+exports.createFriend = (req, res) => {
     var data = {
         id:req.body.id,
-        email:req.body.email,
+        user_id:req.body.user_id,
         nick_name:req.body.nick_name,
-        birth:req.body.birth,
     }
-    User.putUser(data, (err, data) => {
+    Friend.createFriend(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -17,14 +16,12 @@ exports.putUser = (req, res) => {
     });
 };
 
-exports.updateUser = (req, res) => {
+exports.deleteFriend = (req, res) => {
     var data = {
         id:req.body.id,
-        email:req.body.email,
-        nick_name:req.body.nick_name,
-        birth:req.body.birth,
+        user_id:req.body.user_id,
     }
-    User.updateUser(data, (err, data) => {
+    Friend.deleteFriend(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -34,22 +31,8 @@ exports.updateUser = (req, res) => {
     });
 };
 
-exports.searchUser = (req, res) => {
-    User.searchUser((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        else res.send(data);
-    });
-};
-
-exports.searchUserByNick = (req, res) => {
-    var data = {
-        nick_name:req.body.nick_name,
-    }
-    User.searchUserByNick(data, (err, data) => {
+exports.searchFriend = (req, res) => {
+    Friend.searchFriend((err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -60,7 +43,7 @@ exports.searchUserByNick = (req, res) => {
 };
 
 exports.getAll = (req, res) => {
-    User.getAll((err, data) => {
+    Friend.getAll((err, data) => {
         if (err)
             res.status(500).send({
                 message:
