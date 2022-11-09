@@ -43,8 +43,13 @@
             android:name=".Setting"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
         <activity
-            android:name=".Afteraddcalendar"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
+            android:name=".CalendarMain"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <meta-data
+            android:name="android.app.lib_name"
+            android:value="" />
+        </activity>
+
 
 
 
