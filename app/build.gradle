@@ -13,7 +13,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,7 +34,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
 }
 
 dependencies {
@@ -54,10 +53,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
-
-
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
-
+    implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
 }
 
 

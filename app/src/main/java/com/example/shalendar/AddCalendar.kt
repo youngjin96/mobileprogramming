@@ -38,8 +38,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         mBinding = ActivityAddCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
 //        다이얼로그 창 띄우면 뒤에 화면 어둡게
 
         dialog01 = Dialog(this@AddCalendar) // Dialog 초기화
@@ -100,7 +98,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     fun showDialog01() {
         dialog01!!.show() // 다이얼로그 띄우기
         dialog01!!.findViewById<View>(R.id.dialog_append_button).setOnClickListener { // 원하는 기능 구현
-            startActivity(Intent(this, Afteraddcalendar::class.java))
+            startActivity(Intent(this, CalendarMain::class.java))
 
         }
         val noBtn = dialog01!!.findViewById<Button>(R.id.dialog_close_button)
@@ -121,7 +119,10 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean { //네비게이션 아이템 클릭시 수행
         when (item.itemId) {
-            R.id.nav_info_change ->  startActivity(Intent(this, InfoChange::class.java))
+            R.id.nav_info_change ->  {
+                println("d")
+                startActivity(Intent(this, InfoChange::class.java))
+            }
             R.id.nav_enquiry -> startActivity(Intent(this, Enquiry::class.java))
             R.id.nav_event-> startActivity(Intent(this, Event::class.java))
             R.id.nav_setting -> startActivity(Intent(this, Setting::class.java))
@@ -147,8 +148,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
         return true
     }
-
-
 
 }
 
