@@ -10,12 +10,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-
-require("./routes/calendar.routes.js")(app);
 require("./routes/user.routes.js")(app);
-
-
-
+require("./routes/calendar.routes.js")(app);
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)

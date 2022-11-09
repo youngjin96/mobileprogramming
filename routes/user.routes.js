@@ -1,8 +1,8 @@
 module.exports = app =>{
-    const users = require("../controllers/user.controller.js");
+    const user = require("../controllers/user.controller.js");
 
-    //app.get("/user", users.findAll); // serch
-    //app.post("/user", users.putUser); // insert
-    //app.get("/user", users.cheakAll); // check
-    //app.get("/user/search/", users.serchAll); // serch
+    // 전체 조회 
+    //app.post("/user", user.putUser);
+    //app.post("/user", user.updateUser);
+    app.get("/user", user.getAll);
 };
