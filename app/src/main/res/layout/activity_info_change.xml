@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="ID"
             android:layout_marginTop="8sp"/>
-
+            />
 
         <EditText
             android:id="@+id/IDText"
@@ -58,7 +58,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="아이디를 입력하세요"
+            android:hint="변경할 아이디를 입력하세요"
             />
 
     </LinearLayout>
@@ -88,6 +88,8 @@
             android:layout_height="wrap_content"
             android:text="Nickname"
             android:layout_marginTop="8sp"/>
+            android:layout_marginEnd="40sp"
+            />
 
         <EditText
             android:id="@+id/NicknameText"
@@ -97,7 +99,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="닉네임을 입력하세요"
+            android:hint="변경할 닉네임을 입력하세요"
             />
 
     </LinearLayout>
@@ -119,7 +121,6 @@
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="5sp"
             />
 
         <TextView
@@ -166,7 +167,6 @@
             android:layout_height="wrap_content"
             android:text="Address"
             android:layout_marginTop="8sp"/>
-
         <EditText
             android:id="@+id/AddressText"
             android:layout_width="match_parent"
