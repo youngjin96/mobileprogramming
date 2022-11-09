@@ -18,8 +18,9 @@ class InfoChange: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityInfoChangeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
+        binding.PersonalInfoChangeBtn.setOnClickListener(){
+            show()
+        }
 
 
 
