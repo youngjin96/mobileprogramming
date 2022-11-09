@@ -40,7 +40,14 @@
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="40sp"
+            android:layout_marginEnd="20sp"
+            />
+
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="ID"
+            android:layout_marginTop="8sp"/>
             />
 
         <EditText
@@ -73,6 +80,14 @@
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="20sp"
+            />
+
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="Nickname"
+            android:layout_marginTop="8sp"/>
             android:layout_marginEnd="40sp"
             />
 
@@ -106,8 +121,13 @@
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="25sp"
             />
+
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="TelNum"
+            android:layout_marginTop="8sp"/>
 
         <EditText
             android:id="@+id/TelNumText"
@@ -139,9 +159,14 @@
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="51sp"
+            android:layout_marginEnd="31sp"
             />
 
+        <TextView
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:text="Address"
+            android:layout_marginTop="8sp"/>
         <EditText
             android:id="@+id/AddressText"
             android:layout_width="match_parent"
@@ -160,10 +185,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="적용"
+        android:textColor="@color/white"
+        android:background="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginBottom="25dp"
-        android:layout_marginStart="35dp"
-        android:textSize="34sp" />
+        android:layout_marginStart="35dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
