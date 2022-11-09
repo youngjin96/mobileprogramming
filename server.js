@@ -10,8 +10,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
-
-require("./routes/calendar.routes.js")(app);
 require("./routes/user.routes.js")(app);
 require("./routes/schedule.routes.js")(app);
 

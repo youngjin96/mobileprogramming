@@ -1,5 +1,5 @@
 module.exports = app =>{
-    const users = require("../controllers/user.controller.js");
+    const user = require("../controllers/user.controller.js");
 
     //app.get("/user", users.getAllUser); // serch
     //app.post("/user", users.createUser); // insert

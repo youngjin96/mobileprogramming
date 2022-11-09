@@ -1,10 +1,9 @@
 const sql = require("./db.js");
-//const users = require("../controllers/signUp.controller.js");
 
 const User = function (user) {
     this.id = user.id;
     this.email = user.email;
-    this.nickName = user.nick_name;
+    this.nick_name = user.nick_name;
     this.birth = user.birth;
 };
 
@@ -74,6 +73,36 @@ User.deleteUser = (data,result) => { // delete user
             return;
         }
         result(null, res);
+    });                
+};
+
+User.searchUser = result => {
+    sql.query('SELECT DISTINCT nick_name from user', (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });                
+};
+
+User.searchUserByNick = (data, result) => {
+    sql.query('SELECT * from user', (err, res) => {
+        var found_list = [];
+        for(let i=0; i<Object.keys(res).length; i++){
+            if(res[i].nick_name == data.nick_name)
+            found_list.push(res[i])
+        }
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        if(found_list.length == 0)
+            result(null, "유저 없음");
+        else
+            result(null, found_list);
     });
 };
 module.exports = User;
