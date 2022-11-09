@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import com.example.shalendar.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -20,6 +19,7 @@ import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
+import java.util.Calendar.getInstance
 import kotlin.concurrent.thread
 
 class SignUp : AppCompatActivity() {

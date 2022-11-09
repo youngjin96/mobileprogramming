@@ -31,7 +31,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private val binding get() = mBinding!!
 
 
-//    private var dialog01: Dialog? = null
+    //    private var dialog01: Dialog? = null
     var add: Button? = null
     var dialog: AlertDialog? = null
     var layout: LinearLayout? = null
@@ -127,7 +127,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             R.id.nav_event-> startActivity(Intent(this, Event::class.java))
             R.id.nav_setting -> startActivity(Intent(this, Setting::class.java))
             R.id.nav_logout -> {
-                Firebase.auth.signOut()
+//                Firebase.auth.signOut()
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }
@@ -155,7 +155,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
         val name = view.findViewById<EditText>(R.id.nameEdit)
         builder.setView(view)
-        builder.setTitle("Enter name")
+        builder.setTitle("달력 이름")
             .setPositiveButton(
                 "OK"
             ) { dialog, which -> addCard(name.text.toString()) }
@@ -177,4 +177,3 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
 
 }
-
