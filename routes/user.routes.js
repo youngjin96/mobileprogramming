@@ -4,6 +4,7 @@ module.exports = app =>{
     // 전체 조회 
     //app.post("/user", user.putUser);
     app.put("/user", user.updateUser);
+    app.post("/user/create", user.createUser);
     //app.post("/user", user.searchUserByNick);
     //app.get("/user", user.searchUser);
 };

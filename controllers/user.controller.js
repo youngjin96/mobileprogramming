@@ -1,13 +1,13 @@
 const User = require("../models/user.model.js");
 
-exports.putUser = (req, res) => {
+exports.createUser = (req, res) => {
     var data = {
         id:req.body.id,
         email:req.body.email,
         nick_name:req.body.nick_name,
         birth:req.body.birth,
     }
-    User.putUser(data, (err, data) => {
+    User.createUser(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:

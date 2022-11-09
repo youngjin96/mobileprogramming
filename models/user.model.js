@@ -7,7 +7,7 @@ const User = function (user) {
     this.birth = user.birth;
 };
 
-User.putUser = (data, result) => {
+User.createUser = (data, result) => {
     sql.query('INSERT INTO user(id, email, nick_name, birth) VALUES (?, ?, ?, ?)', [data.id, data.email, data.nick_name, data.birth], (err, res) => {
         if (err) {
             console.log("error: ", err);
