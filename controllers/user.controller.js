@@ -59,8 +59,36 @@ exports.searchUserByNick = (req, res) => {
     });
 };
 
-exports.getAll = (req, res) => {
-    User.getAll((err, data) => {
+exports.getCalendarId = (req, res) => {
+    var data = {
+        id:req.body.id,
+    }
+    User.getCalendarId(data, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+
+exports.getBirth = (req, res) => {
+    var data = {
+        id:req.body.id,
+    }
+    User.getBirth(data, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+
+exports.getAllUser = (req, res) => {
+    User.getAllUser((err, data) => {
         if (err)
             res.status(500).send({
                 message:

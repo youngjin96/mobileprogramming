@@ -1,11 +1,12 @@
-const Friend = require("../models/friend.model.js");
+const Share = require("../models/share.model.js");
 
-exports.createFriend = (req, res) => {
+exports.createShare = (req, res) => {
     var data = {
+        id:req.body.id,
         user_id:req.body.user_id,
         nick_name:req.body.nick_name,
     }
-    Friend.createFriend(data, (err, data) => {
+    Share.createShare(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -15,12 +16,12 @@ exports.createFriend = (req, res) => {
     });
 };
 
-exports.deleteFriend = (req, res) => {
+exports.deleteShare = (req, res) => {
     var data = {
         id:req.body.id,
         user_id:req.body.user_id,
     }
-    Friend.deleteFriend(data, (err, data) => {
+    Share.deleteShare(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -30,22 +31,8 @@ exports.deleteFriend = (req, res) => {
     });
 };
 
-exports.viewFriend = (req, res) => {
-    var data = {
-        user_id:req.body.user_id,
-    }
-    Friend.viewFriend(data, (err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        else res.send(data);
-    });
-};
-
-exports.getAllFriend = (req, res) => {
-    Friend.getAllFriend((err, data) => {
+exports.getAllShare = (req, res) => {
+    Share.getAllShare((err, data) => {
         if (err)
             res.status(500).send({
                 message:

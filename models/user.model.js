@@ -29,7 +29,7 @@ User.updateUser = (data, result) => {
     });
 };
 
-User.getAll = result => {
+User.getAllUser = result => {
     sql.query('SELECT * from user', (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -50,6 +50,29 @@ User.searchUser = result => {
         result(null, res);
     });                
 };
+
+User.getBirth = (data, result) => {
+    sql.query('SELECT birth from user WHERE id = ?', [data.id], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });                
+};
+
+User.getCalendarId = (data, result) => {
+    sql.query('SELECT calendar_id from share WHERE friend_id = ?', [data.id], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });                
+};
+
 
 User.searchUserByNick = (data, result) => {
     sql.query('SELECT * from user', (err, res) => {
