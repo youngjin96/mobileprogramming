@@ -27,11 +27,11 @@ exports.createUser = (req, res) => { //유저추가
         else res.send(data);
     });
 };
-exports.cheakUser = (req, res) => { //유저검색
+exports.checkUser = (req, res) => { //유저검색
     var data = {
         nick_name : req.body.nick_name,
     }
-    User.cheakUser(data, (err, data) => {
+    User.checkUser(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
