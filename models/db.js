@@ -1,21 +1,21 @@
 const mysql = require('mysql');
-
 /*
 const connection = mysql.createConnection({
-  host     : '10.223.116.186',
-  user     : 'juan',
-  password : '1234',
-  port     : '3306',
-  database : 'Shalendar'
-}); */
+    host     : '10.223.116.186',
+    user     : 'donghyun',
+    password : '1234',
+    port     : '3306',
+    database : 'Shalendar'
+});*/
+
 
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'zxc123',
-  port     : '3306',
-  database : 'test_db'
-});
+    host     : 'localhost',
+    user     : 'root',
+    password : 'design41',
+    database : 'my_db'
+  });
+
 
 connection.connect((err) => {
   if (err) {
