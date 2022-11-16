@@ -57,6 +57,7 @@ User.checkUser = (data, result) => { // check user
             }
             else if(i==Object.keys(res).length-1)
             {
+
                 result(err, false);
             }
         }

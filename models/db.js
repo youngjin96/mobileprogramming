@@ -8,7 +8,6 @@ const connection = mysql.createConnection({
     database : 'Shalendar'
 });
 
-
 // const connection = mysql.createConnection({
 //     host     : 'localhost',
 //     user     : 'root',

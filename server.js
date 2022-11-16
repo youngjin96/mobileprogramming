@@ -11,7 +11,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 require("./routes/user.routes.js")(app);
+require("./routes/calendar.routes.js")(app);
 require("./routes/schedule.routes.js")(app);
+require("./routes/share.routes.js")(app);
 
 
 

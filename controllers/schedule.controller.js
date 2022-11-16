@@ -26,7 +26,9 @@ exports.scheduleSerch = (req, res) => {
 exports.createSchedule = (req, res) => {
     var data = {
         calendar_id: req.body.calendar_id,
-        date : req.body.date,
+        year: req.body.year,
+        month: req.body.month,
+        day: req.body.day,
     }
     Schedule.createSchedule(data,(err, data) => {
         if (err)
@@ -61,7 +63,9 @@ exports.checkSchedule = (req, res) => {
 exports.deleteSchedule = (req, res) => {
     var data = {
         calendar_id: req.body.calendar_id,
-        date: req.body.date,
+        year: req.body.year,
+        month: req.body.month,
+        day: req.body.day,
     }
     Schedule.deleteSchedule(data,(err, data) => {
         if (err)
