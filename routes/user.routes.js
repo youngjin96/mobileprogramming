@@ -3,7 +3,7 @@ module.exports = app =>{
 
     //app.get("/user", users.getAllUser); // serch
     //app.post("/user", users.createUser); // insert
-    //app.get("/user", users.cheakUser); // check(닉네임기준)
+    //app.post("/user", users.cheakUser); // check(닉네임기준)
     //app.delete("/user", users.deleteUser); // delete(id기준)
 
 

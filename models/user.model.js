@@ -36,10 +36,8 @@ User.cheakUser = (data, result) => { // check user
     {
         for(let i=0; i<Object.keys(res).length; i++)
         {
-            console.log(res[i].nick_name);
             if(res[i].nick_name == data.nick_name)
             {
-                console.log("찾음");
                 sql.query('SELECT * FROM user where nick_name = ?',[data.nick_name], (err, res) => 
                 {
                     console.log(res);
@@ -50,8 +48,6 @@ User.cheakUser = (data, result) => { // check user
             }
             else if(i==Object.keys(res).length-1)
             {
-                console.log("못찾음");
-                
                 result(err, "못찾음");
             }
         }
