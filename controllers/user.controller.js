@@ -1,13 +1,24 @@
 const User = require("../models/user.model.js");
 
-exports.createUser = (req, res) => {
+exports.getAllUser = (req, res) => { // 모든유저
+    User.getAllUser((err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+exports.createUser = (req, res) => { //유저추가
     var data = {
-        id:req.body.id,
-        email:req.body.email,
-        nick_name:req.body.nick_name,
-        birth:req.body.birth,
+        id : req.body.id,
+        email: req.body.email,
+        nick_name : req.body.nick_name,
+        birth : req.body.birth,
     }
-    User.createUser(data, (err, data) => {
+    
+    User.putUser(data,(err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -16,15 +27,11 @@ exports.createUser = (req, res) => {
         else res.send(data);
     });
 };
-
-exports.updateUser = (req, res) => {
+exports.cheakUser = (req, res) => { //유저검색
     var data = {
-        id:req.body.id,
-        email:req.body.email,
-        nick_name:req.body.nick_name,
-        birth:req.body.birth,
+        nick_name : req.body.nick_name,
     }
-    User.updateUser(data, (err, data) => {
+    User.cheakUser(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -33,34 +40,13 @@ exports.updateUser = (req, res) => {
         else res.send(data);
     });
 };
-
-exports.searchUser = (req, res) => {
-    User.searchUser((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        else res.send(data);
-    });
-};
-
-exports.searchUserByNick = (req, res) => {
+exports.deleteUser = (req, res) => {//유저삭제
     var data = {
-        nick_name:req.body.nick_name,
+        id : req.body.id,
+        nick_name : req.body.nick_name,
     }
-    User.searchUserByNick(data, (err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        else res.send(data);
-    });
-};
-
-exports.getAll = (req, res) => {
-    User.getAll((err, data) => {
+    
+    User.deleteUser(data,(err, data) => {
         if (err)
             res.status(500).send({
                 message:

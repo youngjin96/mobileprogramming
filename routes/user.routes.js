@@ -1,10 +1,12 @@
 module.exports = app =>{
     const user = require("../controllers/user.controller.js");
 
-    // 전체 조회 
-    //app.post("/user", user.putUser);
-    app.put("/user", user.updateUser);
-    app.post("/user/create", user.createUser);
-    //app.post("/user", user.searchUserByNick);
-    //app.get("/user", user.searchUser);
+    //app.get("/user", users.getAllUser); // serch
+    //app.post("/user", users.createUser); // insert
+    //app.get("/user", users.cheakUser); // check(닉네임기준)
+    //app.delete("/user", users.deleteUser); // delete(id기준)
+
+
+    //app.get("/user/search/", users.serchAll); // serch
+    //http://localhost:5000/user
 };
