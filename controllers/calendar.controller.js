@@ -37,6 +37,21 @@ exports.createCalendar = (req, res) => {
     });
 };
 
+exports.getName = (req, res) => {
+    var data = {
+        id:req.body.id,
+    }
+    Calendar.getName(data, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+
+
 exports.calendarSearch = (req, res) => {
     Calendar.calendarsearch((err, data) => {
         if (err)

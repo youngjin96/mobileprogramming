@@ -45,8 +45,46 @@ exports.deleteUser = (req, res) => {//유저삭제
         id : req.body.id,
         nick_name : req.body.nick_name,
     }
-    
-    User.deleteUser(data,(err, data) => {
+    User.searchUserByNick(data, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+
+exports.getCalendarId = (req, res) => {
+    var data = {
+        id:req.body.id,
+    }
+    User.getCalendarId(data, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+
+exports.getBirth = (req, res) => {
+    var data = {
+        id:req.body.id,
+    }
+    User.getBirth(data, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving users."
+            });
+        else res.send(data);
+    });
+};
+
+exports.getAllUser = (req, res) => {
+    User.getAllUser((err, data) => {
         if (err)
             res.status(500).send({
                 message:

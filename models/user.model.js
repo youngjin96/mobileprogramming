@@ -41,8 +41,18 @@ User.createUser = (data,result) => { // insert user
         result(null, res);
     });
 };
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+User.getAllUser = result => {
+    sql.query('SELECT * from user', (err, res) => {
+=======
+//var cheakid = "kalmaho"
+User.cheakUser = (data, result) => { // check user
+=======
 
 User.checkUser = (data, result) => { // check user
+>>>>>>> f10c55d8b52e18b48fc3be4eb93328e03215eeb6
     sql.query('SELECT nick_name FROM user', (err, res) => 
     {
         for(let i=0; i<Object.keys(res).length; i++)
@@ -72,6 +82,7 @@ User.deleteUser = (data,result) => { // delete user
     
     sql.query('delete From user where id = ?',[data.id], (err, res) => 
     {
+>>>>>>> 2fe1572edd88975468556c5b5bde008ec96047a8
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -91,6 +102,29 @@ User.searchUser = result => {
         result(null, res);
     });                
 };
+
+User.getBirth = (data, result) => {
+    sql.query('SELECT birth from user WHERE id = ?', [data.id], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });                
+};
+
+User.getCalendarId = (data, result) => {
+    sql.query('SELECT calendar_id from share WHERE friend_id = ?', [data.id], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    });                
+};
+
 
 User.searchUserByNick = (data, result) => {
     sql.query('SELECT * from user', (err, res) => {

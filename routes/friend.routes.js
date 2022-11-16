@@ -3,4 +3,5 @@ module.exports = app =>{
     //app.post("/friend", friend.createFriend);
     //app.delete("/friend", friend.deleteFriend);
     //app.get("/friend", friend.getAll);
+    //app.get("/friend", friend.viewFriend);
 };

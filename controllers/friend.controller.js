@@ -2,7 +2,6 @@ const Friend = require("../models/friend.model.js");
 
 exports.createFriend = (req, res) => {
     var data = {
-        id:req.body.id,
         user_id:req.body.user_id,
         nick_name:req.body.nick_name,
     }
@@ -31,8 +30,11 @@ exports.deleteFriend = (req, res) => {
     });
 };
 
-exports.searchFriend = (req, res) => {
-    Friend.searchFriend((err, data) => {
+exports.viewFriend = (req, res) => {
+    var data = {
+        user_id:req.body.user_id,
+    }
+    Friend.viewFriend(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -42,8 +44,8 @@ exports.searchFriend = (req, res) => {
     });
 };
 
-exports.getAll = (req, res) => {
-    Friend.getAll((err, data) => {
+exports.getAllFriend = (req, res) => {
+    Friend.getAllFriend((err, data) => {
         if (err)
             res.status(500).send({
                 message:
