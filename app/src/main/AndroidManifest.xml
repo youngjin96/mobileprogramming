@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.shalendar">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -12,39 +12,49 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shalendar"
-        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".CalendarMain"
-            android:exported="false" />
         <activity
             android:name=".SignUp"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddCalendar"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".AddCalendar"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
         <activity
-            android:name=".Enquiry"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".Enquiry"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
         <activity
-            android:name=".Event"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".InfoChange" />
+            android:name=".Event"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
         <activity
-            android:name=".Setting"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:name=".InfoChange"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+        <activity
+            android:name=".Setting"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            />
+        <activity
+            android:name=".CalendarMain"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+
+
+
     </application>
+
+
 
 </manifest>

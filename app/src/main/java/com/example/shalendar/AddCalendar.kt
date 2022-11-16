@@ -1,17 +1,17 @@
 package com.example.shalendar
 
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
-import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
@@ -30,7 +30,11 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private var mBinding : ActivityAddCalendarBinding? = null
     private val binding get() = mBinding!!
 
-    private var dialog01: Dialog? = null
+
+    //    private var dialog01: Dialog? = null
+    var add: Button? = null
+    var dialog: AlertDialog? = null
+    var layout: LinearLayout? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,15 +42,22 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         mBinding = ActivityAddCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        다이얼로그 창 띄우면 뒤에 화면 어둡게
+        add = findViewById(R.id.add)
+        layout = findViewById(R.id.container)
 
-        dialog01 = Dialog(this@AddCalendar) // Dialog 초기화
-        dialog01!!.requestWindowFeature(Window.FEATURE_NO_TITLE) // 타이틀 제거
-        dialog01!!.setContentView(R.layout.activity_dialog)
+        buildDialog()
+
+
+
+////        다이얼로그 창 띄우면 뒤에 화면 어둡게
+//
+//        dialog01 = Dialog(this@AddCalendar) // Dialog 초기화
+//        dialog01!!.requestWindowFeature(Window.FEATURE_NO_TITLE) // 타이틀 제거
+//        dialog01!!.setContentView(R.layout.activity_dialog)
 
 //        + 버튼 클릭 시 다이얼로그 레이아웃 생성
-        val add_calendar_btn = findViewById<View>(R.id.add_calendar_btn) as Button
-        add_calendar_btn.setOnClickListener { showDialog01() }
+        add!!.setOnClickListener { dialog!!.show() }
+
 
 
         binding.navbarOpen.setOnClickListener {
@@ -94,40 +105,29 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
 //    다이얼로그 띄우는 함수
-
-    fun showDialog01() {
-        dialog01!!.show() // 다이얼로그 띄우기
-        dialog01!!.findViewById<View>(R.id.dialog_append_button).setOnClickListener { // 원하는 기능 구현
-            startActivity(Intent(this, CalendarMain::class.java))
-
-        }
-        val noBtn = dialog01!!.findViewById<Button>(R.id.dialog_close_button)
-        noBtn.setOnClickListener {
-            // 원하는 기능 구현
-            dialog01!!.dismiss() // 다이얼로그 닫기
-        }
-        // 네 버튼
-
-
-        /* 이 함수 안에 원하는 디자인과 기능을 구현하면 된다. */
-
-        // 위젯 연결 방식은 각자 취향대로~
-        // '아래 아니오 버튼'처럼 일반적인 방법대로 연결하면 재사용에 용이하고,
-        // '아래 네 버튼'처럼 바로 연결하면 일회성으로 사용하기 편함.
-        // *주의할 점: findViewById()를 쓸 때는 -> 앞에 반드시 다이얼로그 이름을 붙여야 한다.
-    }
+//
+//    fun showDialog01() {
+//        dialog01!!.show() // 다이얼로그 띄우기
+//        dialog01!!.findViewById<View>(R.id.dialog_append_button).setOnClickListener { // 원하는 기능 구현
+//            startActivity(Intent(this, CalendarMain::class.java))
+//
+//        }
+//        val noBtn = dialog01!!.findViewById<Button>(R.id.dialog_close_button)
+//        noBtn.setOnClickListener {
+//            // 원하는 기능 구현
+//            dialog01!!.dismiss() // 다이얼로그 닫기
+//        }
+//
+//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean { //네비게이션 아이템 클릭시 수행
         when (item.itemId) {
-            R.id.nav_info_change ->  {
-                println("d")
-                startActivity(Intent(this, InfoChange::class.java))
-            }
+            R.id.nav_info_change ->  startActivity(Intent(this, InfoChange::class.java))
             R.id.nav_enquiry -> startActivity(Intent(this, Enquiry::class.java))
             R.id.nav_event-> startActivity(Intent(this, Event::class.java))
             R.id.nav_setting -> startActivity(Intent(this, Setting::class.java))
             R.id.nav_logout -> {
-                Firebase.auth.signOut()
+//                Firebase.auth.signOut()
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }
@@ -149,5 +149,31 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         return true
     }
 
-}
 
+    private fun buildDialog() {
+        val builder = AlertDialog.Builder(this)
+        val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
+        val name = view.findViewById<EditText>(R.id.nameEdit)
+        builder.setView(view)
+        builder.setTitle("달력 이름")
+            .setPositiveButton(
+                "OK"
+            ) { dialog, which -> addCard(name.text.toString()) }
+            .setNegativeButton(
+                "Cancel"
+            ) { dialog, which -> }
+        dialog = builder.create()
+    }
+
+    private fun addCard(name: String) {
+        val view = layoutInflater.inflate(R.layout.card, null)
+        val nameView = view.findViewById<TextView>(R.id.name)
+        val delete = view.findViewById<Button>(R.id.delete)
+        nameView.text = name
+        delete.setOnClickListener { layout!!.removeView(view) }
+        layout!!.addView(view)
+    }
+
+
+
+}
