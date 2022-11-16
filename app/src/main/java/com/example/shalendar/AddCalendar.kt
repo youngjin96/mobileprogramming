@@ -153,7 +153,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private fun buildDialog() {
         val builder = AlertDialog.Builder(this)
         val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
-        val name = view.findViewById<EditText>(R.id.nameEdit)
+        val name = view.findViewById<EditText>(R.id.et_name)
         builder.setView(view)
         builder.setTitle("달력 이름")
             .setPositiveButton(
