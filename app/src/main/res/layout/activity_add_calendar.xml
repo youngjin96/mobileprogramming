@@ -18,9 +18,10 @@
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/nav_hearder_icon"
+            android:src="@drawable/nav_header_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
             android:layout_width="180dp"
@@ -45,23 +46,44 @@
         android:layout_gravity="start"
         android:background="#FFFFFF"
         app:menu="@menu/nav_menu"
-        tools:ignore="MissingConstraints"></com.google.android.material.navigation.NavigationView>
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/buttonLogin"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/add_button"
-        android:text="+"
-        android:textColor="#FFFFFF"
-        android:textSize="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    </com.google.android.material.navigation.NavigationView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp">
+
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="+"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/add_button"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="70dp"
+            android:scrollbars="none">
+            <LinearLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+
 
 
     <!--    app:headerLayout="@layout/nav_header"-->

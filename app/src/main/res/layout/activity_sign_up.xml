@@ -92,11 +92,21 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textViewRepeatPassword" />
 
-    <EditText
-        android:id="@+id/editTextNickName"
+    <Button
+        android:id="@+id/bt_check_duplicate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="9dp"
+        android:text="중복확인"
+        app:layout_constraintStart_toEndOf="@+id/editTextNickName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRepeatPassword" />
+
+    <EditText
+        android:id="@+id/editTextNickName"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/editTextRepeatPassword"
@@ -131,8 +141,8 @@
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="68dp"
         android:text="뒤로가기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -141,7 +151,7 @@
         android:id="@+id/buttonComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
+        android:layout_marginEnd="56dp"
         android:layout_marginBottom="68dp"
         android:text="가입완료"
         app:layout_constraintBottom_toBottomOf="parent"

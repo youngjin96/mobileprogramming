@@ -77,7 +77,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/editTextPassword"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.511" />
+        app:layout_constraintVertical_bias="0.513" />
 
     <TextView
         android:id="@+id/textViewSignUp"
@@ -100,7 +100,8 @@
         android:background="@drawable/login_button"
         android:minWidth="320dp"
         android:text="로그인"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
+        android:backgroundTint="#856BE1"
         android:textSize="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

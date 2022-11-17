@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name=".AddCalendar"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        />
+            />
         <activity
             android:name=".Enquiry"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
@@ -42,6 +42,14 @@
         <activity
             android:name=".Setting"  android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             />
+        <activity
+            android:name=".CalendarMain"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
 
 
 

@@ -46,9 +46,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
             dialog.setNegativeButton("취소", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
-
             dialog.show()
-
         }
 
         // 회원가입 눌렀을 때 SignUp 페이지로 이동
