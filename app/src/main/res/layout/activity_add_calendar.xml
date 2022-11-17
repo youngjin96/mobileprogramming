@@ -37,6 +37,50 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
             app:queryHint="검색"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp">
+
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="+"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/add_button"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="70dp"
+                android:scrollbars="none">
+                <LinearLayout
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_suggestions"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/search_view"
+            app:layout_constraintStart_toStartOf="@+id/search_view"
+            app:layout_constraintTop_toBottomOf="@+id/search_view"
+            android:background="#dddddd"
+            android:visibility="invisible"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -50,39 +94,6 @@
 
     </com.google.android.material.navigation.NavigationView>
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="100dp">
-
-
-        <Button
-            android:id="@+id/add"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="+"
-            android:layout_marginBottom="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/add_button"/>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="70dp"
-            android:scrollbars="none">
-            <LinearLayout
-                android:id="@+id/container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            </LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
 
 
 

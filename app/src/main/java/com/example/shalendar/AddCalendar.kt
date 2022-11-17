@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shalendar.databinding.ActivityAddCalendarBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
@@ -35,6 +36,8 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     var add: Button? = null
     var dialog: AlertDialog? = null
     var layout: LinearLayout? = null
+
+    var testdata = ArrayList<String>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +60,11 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
 //        + 버튼 클릭 시 다이얼로그 레이아웃 생성
         add!!.setOnClickListener { dialog!!.show() }
+
+
+        // RecyclerView 생성
+        binding.rvSuggestions.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvSuggestions.adapter = SearchRVAdaptor(testdata)
 
 
 
@@ -98,6 +106,8 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
             // 검색창에서 글자 입력할때마다 호출
             override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.equals("")) binding.rvSuggestions.visibility = View.INVISIBLE
+                else binding.rvSuggestions.visibility = View.VISIBLE
                 return true
             }
         })
