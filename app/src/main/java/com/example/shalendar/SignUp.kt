@@ -33,14 +33,9 @@ class SignUp : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         auth = Firebase.auth
 
-        // 뒤로가기 눌렀을 때 메인 페이지로 이동
-        binding.buttonBack.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-
+        // 생년월일 클릭 시 달력 다이얼로그 출력
         binding.editTextBirth.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
@@ -62,43 +57,42 @@ class SignUp : AppCompatActivity() {
         binding.btCheckDuplicate.setOnClickListener {
             var nickName = binding.editTextNickName.text.toString()
             thread(start = true) {
-                val url = URL("http://10.0.2.2:5000/user/check")
+                val handler = Handler(Looper.getMainLooper())
+                val url = URL("http://10.0.2.2:5000/user/check/${nickName}")
                 val conn = url.openConnection() as HttpURLConnection
-                conn.requestMethod = "POST"
-                val postData = "nick_name=$nickName"
+                conn.requestMethod = "GET"
 
-                conn.doOutput = true
-                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
-                conn.setRequestProperty("Content-Length", postData.length.toString())
-                conn.useCaches = false
+                if (conn.responseCode == HttpURLConnection.HTTP_OK) {
+                    val streamReader = InputStreamReader(conn.inputStream)
+                    val buffered = BufferedReader(streamReader)
+                    val content = StringBuilder()
 
-                DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
-                BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
-                    val handler = Handler(Looper.getMainLooper())
-                    if(br.readLine() == "true") {
+                    while (true) {
+                        val data = buffered.readLine() ?: break
+                        content.append(data)
+                    }
+
+                    if (content.toString() == "true") {
                         isDuplicated = true
-                        handler.postDelayed(Runnable {
-                            Toast.makeText(
-                                this,
-                                "이미 존재하는 닉네임입니다.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        handler.postDelayed({
+                            Toast.makeText(this, "이미 존재하는 닉네임입니다.", Toast.LENGTH_SHORT).show()
                         }, 0)
                     } else {
                         isDuplicated = false
-                        handler.postDelayed(Runnable {
-                            Toast.makeText(
-                                this,
-                                "사용 가능한 닉네임입니다.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        handler.postDelayed({
+                            Toast.makeText(this, "사용 가능한 닉네임입니다.", Toast.LENGTH_SHORT).show()
                         }, 0)
                     }
+                    buffered.close()
+                    conn.disconnect()
+                } else {
+                    handler.postDelayed({
+                        Toast.makeText(this, "잠시 후에 시도해주세요.", Toast.LENGTH_SHORT).show()
+                    }, 0)
                 }
             }
         }
 
-        // TODO : 데이터베이스 연결하고 닉네임 중복 확인
         binding.buttonComplete.setOnClickListener {
             var email = binding.editTextEmail.text.toString()
             var password = binding.editTextPassword.text.toString()

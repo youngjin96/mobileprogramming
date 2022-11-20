@@ -127,7 +127,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             R.id.nav_event-> startActivity(Intent(this, Event::class.java))
             R.id.nav_setting -> startActivity(Intent(this, Setting::class.java))
             R.id.nav_logout -> {
-//                Firebase.auth.signOut()
+                Firebase.auth.signOut()
                 startActivity(Intent(this, MainActivity::class.java))
             }
         }

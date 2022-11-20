@@ -33,10 +33,9 @@
         android:layout_marginTop="40dp">
 
         <TextView
-            android:id="@+id/ID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아이디: "
+            android:text="이메일: "
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
@@ -44,21 +43,20 @@
             />
 
         <TextView
-            android:layout_width="60sp"
+            android:id="@+id/tv_email"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="ID"
+            android:text=""
             android:layout_marginTop="8sp"/>
             />
 
         <EditText
-            android:id="@+id/IDText"
-            android:layout_width="match_parent"
+            android:id="@+id/et_email"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:hint="변경할 아이디를 입력하세요"
             />
 
     </LinearLayout>
@@ -73,7 +71,6 @@
         android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/Nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="닉네임: "
@@ -84,28 +81,27 @@
             />
 
         <TextView
-            android:layout_width="60sp"
+            android:id="@+id/tv_nickName"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="Nickname"
+            android:text=""
             android:layout_marginTop="8sp"/>
             android:layout_marginEnd="40sp"
             />
 
         <EditText
-            android:id="@+id/NicknameText"
-            android:layout_width="match_parent"
+            android:id="@+id/et_nickName"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:hint="변경할 닉네임을 입력하세요"
             />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/TelnumLayout"
+        android:id="@+id/BirthLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -114,68 +110,29 @@
         android:layout_marginTop="10dp">
 
         <TextView
-            android:id="@+id/TelNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전화번호: "
+            android:text="생년월일: "
             android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             />
 
         <TextView
-            android:layout_width="60sp"
+            android:id="@+id/tv_birth"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="TelNum"
+            android:text=""
             android:layout_marginTop="8sp"/>
 
         <EditText
-            android:id="@+id/TelNumText"
-            android:layout_width="match_parent"
+            android:id="@+id/et_birth"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:hint="변경할 전화번호를 입력하세요"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/AddressLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TelnumLayout"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/Address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="주소: "
-            android:textColor="@color/black"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="31sp"
-            />
-
-        <TextView
-            android:layout_width="60sp"
-            android:layout_height="wrap_content"
-            android:text="Address"
-            android:layout_marginTop="8sp"/>
-        <EditText
-            android:id="@+id/AddressText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginEnd="20dp"
-            android:hint="변경할 주소를 입력하세요"
             />
 
     </LinearLayout>
