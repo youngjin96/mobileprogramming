@@ -8,6 +8,8 @@
     android:id="@+id/drawerLayout"
     tools:context=".AddCalendar">
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,16 +41,7 @@
             app:queryHint="검색"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#FFFFFF"
-        app:menu="@menu/nav_menu"
-        tools:ignore="MissingConstraints">
 
-    </com.google.android.material.navigation.NavigationView>
 
 
     <RelativeLayout
@@ -83,6 +76,17 @@
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#FFFFFF"
+        app:menu="@menu/nav_menu"
+        tools:ignore="MissingConstraints">
+
+    </com.google.android.material.navigation.NavigationView>
 
 
 

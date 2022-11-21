@@ -40,7 +40,9 @@
             android:ems="10"
             android:layout_margin="15dp"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text=""
+            android:hint="이름을 입력하세요"
+            android:freezesText="false"
             tools:ignore="TouchTargetSizeCheck" />
 
 

@@ -7,18 +7,15 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
 import com.example.shalendar.databinding.ActivityAddCalendarBinding
 import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -35,15 +32,20 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     var add: Button? = null
     var dialog: AlertDialog? = null
     var layout: LinearLayout? = null
+   // var cardview: RelativeLayout? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityAddCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
+        val name = view.findViewById<EditText>(R.id.nameEdit)
+        name.setText("")
 
         add = findViewById(R.id.add)
         layout = findViewById(R.id.container)
+      //  cardview = findViewById(R.id.moveCal)
 
         buildDialog()
 
@@ -59,10 +61,25 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         add!!.setOnClickListener { dialog!!.show() }
 
 
+////
+//        cardview!!.setOnClickListener {
+//            startActivity(Intent(this, SignUp::class.java))
+//        }
+
+
+
+
+
 
         binding.navbarOpen.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START) // Start 왼쪽 방향에서 시작한다.
         }
+
+
+//        binding.cardview.setOnClickListener{
+//            startActivity(Intent(this, SignUp::class.java))
+//
+//        }
 
 
 
@@ -126,10 +143,10 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             R.id.nav_enquiry -> startActivity(Intent(this, Enquiry::class.java))
             R.id.nav_event-> startActivity(Intent(this, Event::class.java))
             R.id.nav_setting -> startActivity(Intent(this, Setting::class.java))
-            R.id.nav_logout -> {
+//            R.id.nav_logout -> {
 //                Firebase.auth.signOut()
-                startActivity(Intent(this, MainActivity::class.java))
-            }
+//                startActivity(Intent(this, MainActivity::class.java))
+//            }
         }
         binding.drawerLayout.closeDrawers() //네비게이션 뷰 닫기
         return false
@@ -154,14 +171,17 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         val builder = AlertDialog.Builder(this)
         val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
         val name = view.findViewById<EditText>(R.id.nameEdit)
+
+
         builder.setView(view)
-        builder.setTitle("달력 이름")
-            .setPositiveButton(
-                "OK"
-            ) { dialog, which -> addCard(name.text.toString()) }
-            .setNegativeButton(
-                "Cancel"
-            ) { dialog, which -> }
+        builder.setTitle("달력 이름").setPositiveButton("OK")
+            { dialog, which ->
+                addCard(name.text.toString())
+                name.setText("")
+        }
+            .setNegativeButton("Cancel")
+            { dialog, which -> }
+
         dialog = builder.create()
     }
 
@@ -172,7 +192,15 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         nameView.text = name
         delete.setOnClickListener { layout!!.removeView(view) }
         layout!!.addView(view)
+        view.setOnClickListener {
+            startActivity(Intent(this, SignUp::class.java))
+        }
+
+
+
     }
+
+
 
 
 
