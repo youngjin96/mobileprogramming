@@ -196,12 +196,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
             startActivity(Intent(this, SignUp::class.java))
         }
 
-
-
     }
-
-
-
-
 
 }
