@@ -8,52 +8,74 @@
     android:id="@+id/drawerLayout"
     tools:context=".AddCalendar">
 
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/navbar_open"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/nav_header_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/logo"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:text="Shalendar"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="#856BE1"
+            android:textSize="35dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.235"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
-            android:layout_width="180dp"
-            android:layout_height="39dp"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
             android:layout_gravity="end"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="10dp"
+            android:maxWidth="200dp"
             android:textColor="#856BE1"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.952"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            app:queryHint="검색"/>
+            app:queryHint="검색"
+            app:searchIcon="@drawable/search_icon_24px"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/add_button"
+            android:backgroundTint="#856BE1"
+            android:text="+"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="100dp">
 
-
-            <Button
-                android:id="@+id/add"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text="+"
-                android:layout_marginBottom="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/add_button"/>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -81,7 +103,9 @@
             android:background="#dddddd"
             android:visibility="invisible"
             />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -93,7 +117,6 @@
         tools:ignore="MissingConstraints">
 
     </com.google.android.material.navigation.NavigationView>
-
 
 
 

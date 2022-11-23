@@ -76,6 +76,11 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
         binding.navView.setNavigationItemSelectedListener(this)
 
+        binding.searchView.setOnClickListener() {
+            binding.searchView.isIconified = false
+            binding.searchView.maxWidth = 200
+        }
+
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             // 검색 눌렀을 때
             override fun onQueryTextSubmit(query: String?): Boolean {
