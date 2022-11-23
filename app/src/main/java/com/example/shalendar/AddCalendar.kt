@@ -26,6 +26,7 @@ import org.json.JSONTokener
 import java.io.BufferedReader
 import java.io.DataOutputStream
 import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
@@ -35,7 +36,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private var mBinding : ActivityAddCalendarBinding? = null
     private val binding get() = mBinding!!
     private lateinit var auth: FirebaseAuth
-    private var calendarNames = ArrayList<String>()
 
     var add: Button? = null
     var dialog: AlertDialog? = null
@@ -47,30 +47,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         setContentView(binding.root)
         auth = Firebase.auth
 
-        thread(start = true) {
-            val handler = Handler(Looper.getMainLooper())
-            val url = URL("http://10.0.2.2:5000/calendar/${auth.uid}")
-            val conn = url.openConnection() as HttpURLConnection
-            conn.setRequestProperty("Accept", "application/json")
-            conn.requestMethod = "GET"
-
-            if (conn.responseCode == HttpURLConnection.HTTP_OK) {
-                val response = conn.inputStream.bufferedReader().use { it.readText() }
-                var s = response.replace("[", "")
-                var f = s.replace("]", "")
-                val list = f.trim().splitToSequence(',')
-                    .filter { it.isNotEmpty() }
-                    .toList()
-
-                for(i in 0 until list.size) {
-                    calendarNames.add(list[i])
-                }
-            } else {
-                handler.postDelayed({
-                    Toast.makeText(this, "정보를 읽는데 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
-                }, 0)
-            }
-        }
+        setCards()
 
         add = findViewById(R.id.add)
         layout = findViewById(R.id.container)
@@ -129,60 +106,116 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         return true
     }
 
-
     private fun buildDialog() {
         val builder = AlertDialog.Builder(this)
         val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
         val name = view.findViewById<EditText>(R.id.et_name)
         builder.setView(view)
-        builder.setTitle("달력 이름")
-            .setPositiveButton(
-                "OK"
-            ) { dialog, which ->
-                if (name.text.toString() == "") {
-                    Toast.makeText(this, "달력 이름을 설정해주세요.", Toast.LENGTH_SHORT).show()
-                } else {
-                    var n = name.text.toString()
-                    addCard(n)
-                    thread(start = true) {
-                        try {
-                            val url = URL("http://10.0.2.2:5000/calendar/create")
-                            val conn = url.openConnection() as HttpURLConnection
-                            conn.requestMethod = "POST"
-                            val postData = "user_id=${auth.uid}&name=$n&person_num=1"
+        builder.setTitle("달력 이름").setPositiveButton("OK") { dialog, which ->
+            if (name.text.toString() == "") {
+                Toast.makeText(this, "달력 이름을 설정해주세요.", Toast.LENGTH_SHORT).show()
+            } else {
+                var n = name.text.toString()
+                thread(start = true) {
+                    val handler = Handler(Looper.getMainLooper())
+                    try {
+                        val url = URL("http://10.0.2.2:5000/calendar/create")
+                        val conn = url.openConnection() as HttpURLConnection
+                        conn.requestMethod = "POST"
+                        val postData = "user_id=${auth.uid}&name=$n&person_num=1"
+                        conn.setRequestProperty(
+                            "Content-Type",
+                            "application/x-www-form-urlencoded"
+                        )
+                        conn.setRequestProperty("Content-Length", postData.length.toString())
+                        conn.doInput = true
+                        conn.doOutput = true
 
-                            conn.doOutput = true
-                            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
-                            conn.setRequestProperty("Content-Length", postData.length.toString())
-                            conn.useCaches = false
+                        DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
+                        val response = conn.inputStream.bufferedReader().use { it.readText() }
+                        val jsonArray = JSONTokener(response).nextValue() as JSONArray
 
-                            DataOutputStream(conn.outputStream).use { it.writeBytes(postData) }
-                            BufferedReader(InputStreamReader(conn.inputStream)).use { br ->
-                                var line: String?
-                                while (br.readLine().also { line = it } != null) {
-                                    println(line)
-                                }
-                            }
-                        } catch (e: Exception) {
-                            //예외 발생시 처리할 내용
-                            Toast.makeText(baseContext, "잠시 후에 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                        for (i in 0 until jsonArray.length()) {
+                            var name = jsonArray.getJSONObject(i).getString("name")
+                            var id = jsonArray.getJSONObject(i).getString("id")
+                            var num = jsonArray.getJSONObject(i).getString("person_num")
+                            handler.postDelayed({ addCard(name, id) }, 0)
+                        }
+                    } catch (e: Exception) {
+                        handler.postDelayed({
+                            Toast.makeText(baseContext, "잠시 후에 시도해주세요.", Toast.LENGTH_SHORT).show(); }, 0)
                         }
                     }
                     name.getText().clear()
                 }
             }
-            .setNegativeButton(
-                "Cancel"
-            ) { dialog, which -> name.getText().clear()}
+            .setNegativeButton("Cancel") {
+                    dialog, which -> name.getText().clear()
+            }
         dialog = builder.create()
     }
 
-    private fun addCard(name: String) {
+    private fun addCard(name: String, id: String) {
         val view = layoutInflater.inflate(R.layout.card, null)
         val nameView = view.findViewById<TextView>(R.id.tv_name)
         val delete = view.findViewById<Button>(R.id.delete)
         nameView.text = name
-        delete.setOnClickListener { layout!!.removeView(view) }
+        nameView.setId(id.toInt())
+        nameView.setOnClickListener {
+            startActivity(Intent(this, CalendarMain::class.java).putExtra("calendar_id", nameView.getId().toString()))
+        }
+        delete.setOnClickListener {
+            layout!!.removeView(view)
+            thread(start = true) {
+                try {
+                    val url = URL("http://10.0.2.2:5000/calendar/delete/$name")
+                    val conn = url.openConnection() as HttpURLConnection
+                    conn.requestMethod = "DELETE"
+                    conn.doInput = true
+                    conn.doOutput = false
+
+                    val responseCode = conn.responseCode
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        println("삭제")
+                    } else {
+                        println("실패")
+                    }
+
+                } catch (e: Exception) {
+                    Toast.makeText(baseContext, "잠시 후에 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
         layout!!.addView(view)
+    }
+
+    private fun setCards() {
+        thread(start = true) {
+            val handler = Handler(Looper.getMainLooper())
+            val url = URL("http://10.0.2.2:5000/calendar/${auth.uid}")
+            val conn = url.openConnection() as HttpURLConnection
+            conn.setRequestProperty("Accept", "application/json")
+            conn.requestMethod = "GET"
+
+            if (conn.responseCode == HttpURLConnection.HTTP_OK) {
+                val response = conn.inputStream.bufferedReader().use { it.readText() }
+                val jsonArray = JSONTokener(response).nextValue() as JSONArray
+
+                for (i in 0 until jsonArray.length()) {
+                    var id = jsonArray.getJSONObject(i).getString("id")
+                    var name = jsonArray.getJSONObject(i).getString("name")
+                    var num = jsonArray.getJSONObject(i).getString("person_num")
+
+                    handler.postDelayed({
+                        addCard(name, id)
+                    }, 0)
+                }
+
+            } else {
+                handler.postDelayed({
+                    Toast.makeText(this, "정보를 읽는데 오류가 발생했습니다.", Toast.LENGTH_SHORT).show()
+                }, 0)
+            }
+        }
     }
 }
