@@ -7,7 +7,7 @@ exports.create = (req, res) => {
         name : req.body.name,
         person_num : req.body.person_num,
     }
-    Calendar.create(data,(err, data) => {
+    Calendar.create(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -17,9 +17,9 @@ exports.create = (req, res) => {
     });
 };
 
-// 캘린더 이름 가져오기
-exports.getCalendar = (req, res) => {
-    Calendar.getCalendar(req.params.userId, (err, data) => {
+// 전체 캘린더 가져오기
+exports.getCalendars = (req, res) => {
+    Calendar.getCalendars(req.params.userId, (err, data) => {
         if (err)
             res.status(500).send({
                 message:

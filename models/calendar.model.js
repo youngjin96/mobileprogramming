@@ -1,5 +1,5 @@
 const sql = require("./db.js");
-const microTime = require("microtime")
+const microTime = require("microtime");
 
 const Calendar = function (calendar) {
     this.id = calendar.id;  
@@ -9,20 +9,28 @@ const Calendar = function (calendar) {
 };
 
 // 캘린더 생성
-Calendar.create = (data, result) => {
-    var id = microTime.now();
-    sql.query('INSERT INTO calendar (id, user_id, name, person_num) VALUES (?, ?, ?, ?)', [id, data.user_id, data.name, data.person_num], (err, res) => {
+Calendar.create = (data, result) => {   
+    sql.query('INSERT INTO calendar (user_id, name, person_num) VALUES (?, ?, ?)', [data.user_id, data.name, data.person_num], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
-        result(null, res);
+        sql.query('SELECT * from calendar WHERE name = ?', [data.name], (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            } else {
+                console.log(res);
+                result(null, res);
+            }
+        })
     });
 };
 
-// 캘린더 이름 가져오기
-Calendar.getCalendar = (userId, result) => {
+// 전체 캘린더 가져오기
+Calendar.getCalendars = (userId, result) => {
     var calendars = [];
     sql.query('SELECT * from calendar WHERE user_id = ?', [userId], (err, res) => {
         if (err) {
@@ -37,6 +45,7 @@ Calendar.getCalendar = (userId, result) => {
         }
     });
 };
+
 
 // 캘린더 삭제
 Calendar.deleteCalendar = (name, result) => {

@@ -7,18 +7,6 @@ const Schedule = function (schedule) {
     this.month = schedule.month;
     this.day = schedule.day;
 };
-const microTime = require('microtime');
-var id = microTime.now();
-Schedule.createScheduleTable = result => { // 캘린더 테이블 크레이티브
-    sql.query('CREATE TABLE schedule (id VARCHAR(20) PRIMARY KEY, calendar_id VARCHAR(20), year VARCHAR(15), month VARCHAR(15), day VARCHAR(15))', (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
-        result(null, res);
-    });
-};
 
 Schedule.scheduleSerch = result => {
     sql.query('SELECT * FROM schedule', (err, res) => {
@@ -32,7 +20,7 @@ Schedule.scheduleSerch = result => {
 };
 
 Schedule.createSchedule = (data,result) => {
-    sql.query('INSERT INTO schedule(id, calendar_id, year, month, day) VALUES (?,?,?,?,?)',[id, data.calendar_id, data.year, data.month, data.day], (err, res) => {
+    sql.query('INSERT INTO schedule(calendar_id, year, month, day) VALUES (?,?,?,?)',[data.calendar_id, data.year, data.month, data.day], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
