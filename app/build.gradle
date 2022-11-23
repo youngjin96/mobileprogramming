@@ -54,6 +54,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.0'
+    implementation 'com.google.code.gson:gson:2.8.7'
 
 }
 

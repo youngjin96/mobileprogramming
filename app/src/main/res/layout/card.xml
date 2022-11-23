@@ -6,9 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/cardview"
-        >
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -20,26 +18,29 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                >
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
                     android:hint="달력이름"
-                    android:textColor="@android:color/holo_purple"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="6dp"
+                    android:textColor="#505050"
                     android:textFontWeight="1000"
-                    android:textSize="30dp"/>
+                    android:textSize="25dp" />
 
                 <Button
                     android:id="@+id/delete"
-                    android:layout_width="wrap_content"
+                    android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="Delete"
-                    android:layout_alignParentRight="true" />
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/login_button"
+                    android:backgroundTint="#856BE1"
+                    android:text="삭제"
+                    android:textColor="@color/white" />
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>

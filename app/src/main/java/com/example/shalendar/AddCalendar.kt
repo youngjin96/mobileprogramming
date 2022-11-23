@@ -32,7 +32,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     var add: Button? = null
     var dialog: AlertDialog? = null
     var layout: LinearLayout? = null
-   // var cardview: RelativeLayout? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,12 +39,9 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         mBinding = ActivityAddCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
-        val name = view.findViewById<EditText>(R.id.nameEdit)
-        name.setText("")
 
         add = findViewById(R.id.add)
         layout = findViewById(R.id.container)
-      //  cardview = findViewById(R.id.moveCal)
 
         buildDialog()
 
@@ -60,26 +56,9 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 //        + 버튼 클릭 시 다이얼로그 레이아웃 생성
         add!!.setOnClickListener { dialog!!.show() }
 
-
-////
-//        cardview!!.setOnClickListener {
-//            startActivity(Intent(this, SignUp::class.java))
-//        }
-
-
-
-
-
-
         binding.navbarOpen.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START) // Start 왼쪽 방향에서 시작한다.
         }
-
-
-//        binding.cardview.setOnClickListener{
-//            startActivity(Intent(this, SignUp::class.java))
-//
-//        }
 
 
 
@@ -147,6 +126,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 //                Firebase.auth.signOut()
 //                startActivity(Intent(this, MainActivity::class.java))
 //            }
+
         }
         binding.drawerLayout.closeDrawers() //네비게이션 뷰 닫기
         return false
@@ -170,16 +150,14 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
     private fun buildDialog() {
         val builder = AlertDialog.Builder(this)
         val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
-        val name = view.findViewById<EditText>(R.id.nameEdit)
-
-
+        val name = view.findViewById<EditText>(R.id.et_name)
         builder.setView(view)
-        builder.setTitle("달력 이름").setPositiveButton("OK")
+        builder.setTitle("달력 이름").setPositiveButton("확인")
             { dialog, which ->
                 addCard(name.text.toString())
-                name.setText("")
-        }
-            .setNegativeButton("Cancel")
+                name.setText("") }
+
+            .setNegativeButton("취소")
             { dialog, which -> }
 
         dialog = builder.create()
@@ -193,7 +171,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         delete.setOnClickListener { layout!!.removeView(view) }
         layout!!.addView(view)
         view.setOnClickListener {
-            startActivity(Intent(this, SignUp::class.java))
+            startActivity(Intent(this, CalendarMain::class.java))
         }
 
     }

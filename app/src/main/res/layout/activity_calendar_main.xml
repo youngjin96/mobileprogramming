@@ -14,6 +14,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:mcv_selectionColor="#856BE1"
+        app:mcv_selectionMode="multiple"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

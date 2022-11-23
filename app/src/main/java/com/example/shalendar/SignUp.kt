@@ -3,11 +3,13 @@ package com.example.shalendar
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.shalendar.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -15,30 +17,25 @@ import com.google.firebase.ktx.Firebase
 import java.io.BufferedReader
 import java.io.DataOutputStream
 import java.io.InputStreamReader
-import java.lang.Exception
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
-import java.util.Calendar.getInstance
 import kotlin.concurrent.thread
+
 
 class SignUp : AppCompatActivity() {
     private var mBinding : ActivitySignUpBinding? = null
     private val binding get() = mBinding!!
     private lateinit var auth: FirebaseAuth
+    private var isDuplicated = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         auth = Firebase.auth
 
-        // 뒤로가기 눌렀을 때 메인 페이지로 이동
-        binding.buttonBack.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-
+        // 생년월일 클릭 시 달력 다이얼로그 출력
         binding.editTextBirth.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
@@ -56,7 +53,46 @@ class SignUp : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        // TODO : 데이터베이스 연결하고 닉네임 중복 확인
+        // 닉네임 중복 체크 버튼
+        binding.btCheckDuplicate.setOnClickListener {
+            var nickName = binding.editTextNickName.text.toString()
+            thread(start = true) {
+                val handler = Handler(Looper.getMainLooper())
+                val url = URL("http://10.0.2.2:5000/user/check/${nickName}")
+                val conn = url.openConnection() as HttpURLConnection
+                conn.requestMethod = "GET"
+
+                if (conn.responseCode == HttpURLConnection.HTTP_OK) {
+                    val streamReader = InputStreamReader(conn.inputStream)
+                    val buffered = BufferedReader(streamReader)
+                    val content = StringBuilder()
+
+                    while (true) {
+                        val data = buffered.readLine() ?: break
+                        content.append(data)
+                    }
+
+                    if (content.toString() == "true") {
+                        isDuplicated = true
+                        handler.postDelayed({
+                            Toast.makeText(this, "이미 존재하는 닉네임입니다.", Toast.LENGTH_SHORT).show()
+                        }, 0)
+                    } else {
+                        isDuplicated = false
+                        handler.postDelayed({
+                            Toast.makeText(this, "사용 가능한 닉네임입니다.", Toast.LENGTH_SHORT).show()
+                        }, 0)
+                    }
+                    buffered.close()
+                    conn.disconnect()
+                } else {
+                    handler.postDelayed({
+                        Toast.makeText(this, "잠시 후에 시도해주세요.", Toast.LENGTH_SHORT).show()
+                    }, 0)
+                }
+            }
+        }
+
         binding.buttonComplete.setOnClickListener {
             var email = binding.editTextEmail.text.toString()
             var password = binding.editTextPassword.text.toString()
@@ -72,6 +108,9 @@ class SignUp : AppCompatActivity() {
             }
             else if (password != repeatPassword) {
                 Toast.makeText(baseContext, "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show()
+            }
+            else if (isDuplicated) {
+                Toast.makeText(baseContext, "중복확인을 해주세요.", Toast.LENGTH_SHORT).show()
             }
             else {
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
@@ -111,7 +150,6 @@ class SignUp : AppCompatActivity() {
                     }
                 }
             }
-
         }
     }
 

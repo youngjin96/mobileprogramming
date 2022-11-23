@@ -1,29 +1,34 @@
 package com.example.shalendar
 
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import android.widget.EditText
-import android.widget.Toast
 import com.example.shalendar.databinding.ActivityCalendarMainBinding
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import java.util.*
 
 
 class CalendarMain : AppCompatActivity() {
     private var mBinding : ActivityCalendarMainBinding? = null
     private val binding get() = mBinding!!
+    val calList = ArrayList<CalendarDay>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityCalendarMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        calList.add(CalendarDay.from(2022,11,3))
 
-
+        for (i in calList){
+            binding.cvCalendar.setDateSelected(i, true)
+        }
+        binding.cvCalendar.setOnDateChangedListener { widget, date, selected ->
+            // post
 
         }
     }
+}
 
 
 
