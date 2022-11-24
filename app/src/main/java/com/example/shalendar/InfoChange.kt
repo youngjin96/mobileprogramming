@@ -21,9 +21,6 @@ class InfoChange: AppCompatActivity() {
         binding.PersonalInfoChangeBtn.setOnClickListener(){
             show()
         }
-
-
-
     }
     fun show() {
         val builder = AlertDialog.Builder(this)

@@ -11,6 +11,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -42,21 +43,21 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
-            android:layout_width="160dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
             android:layout_gravity="end"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="10dp"
-            android:maxWidth="200dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_search_view"
             android:textColor="#856BE1"
+            android:visibility="visible"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.952"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/navbar_open"
             app:layout_constraintTop_toTopOf="parent"
             app:queryHint="검색"
-            app:searchIcon="@drawable/search_icon_24px"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:elevation="8dp"/>
 
         <Button
             android:id="@+id/add"
@@ -91,6 +92,7 @@
                 </LinearLayout>
             </ScrollView>
         </RelativeLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_suggestions"
