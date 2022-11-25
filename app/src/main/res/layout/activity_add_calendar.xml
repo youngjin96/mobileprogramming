@@ -23,7 +23,8 @@
             android:layout_marginTop="25dp"
             android:src="@drawable/nav_header_icon"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
 
         <TextView
@@ -37,9 +38,20 @@
             android:textColor="#856BE1"
             android:textSize="35dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.235"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/search_icon_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:enabled="true"
+            android:visibility="invisible"/>
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
@@ -55,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/navbar_open"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="검색"
+            app:queryHint="닉네임"
             tools:ignore="MissingConstraints"
             android:elevation="8dp"/>
 
@@ -103,7 +115,8 @@
             app:layout_constraintStart_toStartOf="@+id/search_view"
             app:layout_constraintTop_toBottomOf="@+id/search_view"
             android:background="#dddddd"
-            android:visibility="invisible"
+            android:visibility="visible"
+            android:elevation="8sp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
