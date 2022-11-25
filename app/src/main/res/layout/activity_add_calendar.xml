@@ -43,6 +43,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/search_view_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="25dp"
@@ -51,7 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:enabled="true"
-            android:visibility="invisible"/>
+            android:visibility="visible"/>
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
@@ -62,7 +63,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_search_view"
             android:textColor="#856BE1"
-            android:visibility="visible"
+            android:visibility="gone"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/navbar_open"

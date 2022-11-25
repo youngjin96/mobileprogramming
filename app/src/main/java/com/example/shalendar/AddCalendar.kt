@@ -76,9 +76,11 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
         binding.navView.setNavigationItemSelectedListener(this)
 
-        binding.searchView.setOnClickListener() {
-            binding.searchView.isIconified = false
-            binding.searchView.maxWidth = 200
+        //검색 버튼 눌렀을 때
+        binding.searchViewBtn.setOnClickListener() {
+            binding.searchView.visibility = View.VISIBLE //검색창 띄우기
+            binding.searchViewBtn.visibility = View.INVISIBLE //검색 버튼 지우기
+            binding.searchViewBtn.isEnabled = false //검색 버튼 비활성화
         }
 
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -111,8 +113,8 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
             // 검색창에서 글자 입력할때마다 호출
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.equals("")) binding.rvSuggestions.visibility = View.INVISIBLE
-                else binding.rvSuggestions.visibility = View.VISIBLE
+                if (newText.equals("")) binding.rvSuggestions.visibility = View.INVISIBLE //아직 검색창에 아무것도 입력을 하지 않았을 때
+                else binding.rvSuggestions.visibility = View.VISIBLE //검색창에 무언갈 입력했다면 추천이 뜨는 recycler view 나옴
                 return true
             }
         })
@@ -150,10 +152,18 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         return false
     }
 
+    //뒤로가기 누를 때
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawers()
-        } else {
+        }
+        else if (binding.searchView.visibility == View.VISIBLE) { //검색 창이 나와 있으면
+            binding.searchView.visibility = View.GONE //검색창 지우기
+            //binding.rvSuggestions.visibility = View.GONE //추천 값의 리사이클러 뷰 지우기
+            binding.searchViewBtn.visibility = View.VISIBLE //검색 버튼 보이기
+            binding.searchViewBtn.isEnabled = true //검색버튼 활성화
+        }
+        else {
             super.onBackPressed()
         }
     }
