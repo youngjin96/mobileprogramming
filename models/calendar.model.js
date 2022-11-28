@@ -19,12 +19,21 @@ Calendar.create = (data, result) => {
             result(err, null);
             return;
         }
-        result(null, res);
+        sql.query('SELECT * from calendar WHERE name = ?', [data.name], (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            } else {
+                console.log(res);
+                result(null, res);
+            }
+        })
     });
 };
 
-// 캘린더 이름 가져오기
-Calendar.getCalendar = (userId, result) => {
+// 전체 캘린더 가져오기
+Calendar.getCalendars = (userId, result) => {
     var calendars = [];
     sql.query('SELECT * from calendar WHERE user_id = ?', [userId], (err, res) => {
         if (err) {
@@ -39,6 +48,7 @@ Calendar.getCalendar = (userId, result) => {
         }
     });
 };
+
 
 // 캘린더 삭제
 Calendar.deleteCalendar = (name, result) => {
