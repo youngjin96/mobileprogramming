@@ -1,6 +1,6 @@
 const Schedule = require("../models/schedule.model.js");
 
-exports. createScheduleTable = (req, res) => {
+exports.createScheduleTable = (req, res) => {
     Schedule.createScheduleTable((err, data) => {
         if (err)
             res.status(500).send({
@@ -43,20 +43,15 @@ exports.createSchedule = (req, res) => {
     });
 };
 
+// 날짜 가져오기
 exports.checkSchedule = (req, res) => {
-    var data = {
-        calendar_id: req.body.calendar_id,
-    }
-    Schedule.checkSchedule(data,(err, data) => {
+    Schedule.checkSchedule(req.params.calendarId, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while retrieving schedule."
             });
-        else 
-        {
-            res.send(data);
-        }
+        else res.send(data);
     });
 };
 
