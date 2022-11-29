@@ -16,6 +16,8 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
 import com.example.shalendar.databinding.ActivityAddCalendarBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -51,7 +53,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         add!!.setOnClickListener { dialog!!.show() }
 
         binding.navbarOpen.setOnClickListener {
-            binding.drawerLayout.openDrawer(GravityCompat.START) // Start 왼쪽 방향에서 시작한다.
+            binding.drawerLayout.openDrawer(GravityCompat.START)
         }
 
 
