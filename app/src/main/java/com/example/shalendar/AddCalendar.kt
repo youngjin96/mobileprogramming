@@ -47,12 +47,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
 
 
-////        다이얼로그 창 띄우면 뒤에 화면 어둡게
-//
-//        dialog01 = Dialog(this@AddCalendar) // Dialog 초기화
-//        dialog01!!.requestWindowFeature(Window.FEATURE_NO_TITLE) // 타이틀 제거
-//        dialog01!!.setContentView(R.layout.activity_dialog)
-
 //        + 버튼 클릭 시 다이얼로그 레이아웃 생성
         add!!.setOnClickListener { dialog!!.show() }
 
@@ -100,21 +94,6 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     }
 
-//    다이얼로그 띄우는 함수
-//
-//    fun showDialog01() {
-//        dialog01!!.show() // 다이얼로그 띄우기
-//        dialog01!!.findViewById<View>(R.id.dialog_append_button).setOnClickListener { // 원하는 기능 구현
-//            startActivity(Intent(this, CalendarMain::class.java))
-//
-//        }
-//        val noBtn = dialog01!!.findViewById<Button>(R.id.dialog_close_button)
-//        noBtn.setOnClickListener {
-//            // 원하는 기능 구현
-//            dialog01!!.dismiss() // 다이얼로그 닫기
-//        }
-//
-//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean { //네비게이션 아이템 클릭시 수행
         when (item.itemId) {
@@ -153,9 +132,11 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         val name = view.findViewById<EditText>(R.id.et_name)
         builder.setView(view)
         builder.setTitle("달력 이름").setPositiveButton("확인")
-            { dialog, which ->
-                addCard(name.text.toString())
-                name.setText("") }
+        { dialog, which ->
+            if (name.text.toString() == "") {
+                Toast.makeText(this, "달력 이름을 설정해주세요.", Toast.LENGTH_SHORT).show()
+            } else {  addCard(name.text.toString())
+                name.setText("")} }
 
             .setNegativeButton("취소")
             { dialog, which -> }
@@ -165,7 +146,7 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     private fun addCard(name: String) {
         val view = layoutInflater.inflate(R.layout.card, null)
-        val nameView = view.findViewById<TextView>(R.id.name)
+        val nameView = view.findViewById<TextView>(R.id.tv_name)
         val delete = view.findViewById<Button>(R.id.delete)
         nameView.text = name
         delete.setOnClickListener { layout!!.removeView(view) }

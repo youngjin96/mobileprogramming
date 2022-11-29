@@ -42,8 +42,7 @@
             android:inputType="textPersonName"
             android:text=""
             android:hint="이름을 입력하세요"
-            android:freezesText="false"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:freezesText="false" />
 
 
 <!--&lt;!&ndash;&lt;!&ndash;&ndash;&gt;     test&ndash;&gt;-->

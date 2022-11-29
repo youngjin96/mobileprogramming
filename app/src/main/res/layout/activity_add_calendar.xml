@@ -17,8 +17,8 @@
         <ImageView
             android:id="@+id/navbar_open"
             android:layout_width="30dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="10dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="25dp"
             android:src="@drawable/nav_header_icon"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
             android:textColor="#856BE1"
             android:textSize="35dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.41"
+            app:layout_constraintHorizontal_bias="0.438"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +45,7 @@
             android:layout_width="120dp"
             android:layout_height="30dp"
             android:layout_gravity="end"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="10dp"
             android:textColor="#856BE1"
             app:iconifiedByDefault="false"
@@ -53,8 +53,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            app:queryHint="검색"/>
+            app:queryHint="검색"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/add"
@@ -83,7 +83,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="70dp"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            tools:ignore="SpeakableTextPresentCheck">
+
             <LinearLayout
                 android:id="@+id/container"
                 android:layout_width="match_parent"
