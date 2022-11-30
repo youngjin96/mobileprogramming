@@ -76,6 +76,11 @@ class AddCalendar :AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
         binding.navView.setNavigationItemSelectedListener(this)
 
+        //친구 리스트 눌렀을 때
+        binding.friendListBtn.setOnClickListener() {
+            startActivity(Intent(this, FriendListActivity::class.java))
+        }
+
         //검색 버튼 눌렀을 때
         binding.searchViewBtn.setOnClickListener() {
             binding.searchView.visibility = View.VISIBLE //검색창 띄우기
