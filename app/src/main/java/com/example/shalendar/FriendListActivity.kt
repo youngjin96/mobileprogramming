@@ -11,7 +11,7 @@ import com.example.shalendar.databinding.FriendListLayoutBinding
 
 class FriendListActivity: AppCompatActivity() {
 
-    //private val data = ArrayList<String>()
+    //private val data = ArrayList<String>() //진짜
     val data = ArrayList<String>() //테스트 용
 
     private lateinit var binding: FriendListLayoutBinding
@@ -40,6 +40,7 @@ class FriendListActivity: AppCompatActivity() {
                 dialogInterface: DialogInterface, i: Int -> 
                 if(editText.text != null) Toast.makeText(applicationContext, "찾기!", Toast.LENGTH_SHORT).show()
             }
+            builder.show()
         }
 
 
