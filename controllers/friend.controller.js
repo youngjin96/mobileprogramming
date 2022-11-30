@@ -2,8 +2,8 @@ const Friend = require("../models/friend.model.js");
 
 exports.createFriend = (req, res) => {
     var data = {
-        user_id:req.body.user_id,
-        nick_name:req.body.nick_name,
+        user_id : req.body.user_id,
+        nick_name : req.body.nick_name
     }
     Friend.createFriend(data, (err, data) => {
         if (err)

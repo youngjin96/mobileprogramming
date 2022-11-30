@@ -14,6 +14,7 @@ require("./routes/user.routes.js")(app);
 require("./routes/calendar.routes.js")(app);
 require("./routes/schedule.routes.js")(app);
 require("./routes/share.routes.js")(app);
+require("./routes/friend.routes.js")(app);
 
 
 

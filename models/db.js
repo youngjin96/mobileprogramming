@@ -8,14 +8,6 @@ const connection = mysql.createConnection({
     database : 'Shalendar'
 });
 
-// const connection = mysql.createConnection({
-//     host     : 'localhost',
-//     user     : 'root',
-//     password : 'design41',
-//     database : 'my_db'
-//   });
-
-
 connection.connect((err) => {
   if (err) {
     console.error('Database connection failed: ' + err.stack);
