@@ -6,32 +6,34 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp">
+            android:layout_margin="5dp"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="5dp"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:layout_height="45dp"
+                android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/tv_name"
+                    android:id="@+id/nick_name_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="달력이름"
-                    android:textSize="27dp"
+                    android:hint="닉네임"
+                    android:textSize="15dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="5dp"
                     android:textColor="#505050"/>
 
                 <Button
-                    android:id="@+id/delete"
+                    android:id="@+id/nick_delete"
                     android:layout_width="75dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -39,23 +41,12 @@
                     android:background="@drawable/login_button"
                     android:backgroundTint="#856BE1"
                     android:text="삭제"
+                    android:textSize="13dp"
                     android:textColor="@color/white" />
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-
-<!--        <EditText-->
-<!--            android:id="@+id/et_name"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="30dp"-->
-<!--            android:ems="10"-->
-<!--            android:layout_margin="15dp"-->
-<!--            android:inputType="textPersonName"-->
-<!--            android:text=""-->
-<!--            android:hint="이름을 입력하세요"-->
-<!--            android:freezesText="false" />-->
 
     </RelativeLayout>
 

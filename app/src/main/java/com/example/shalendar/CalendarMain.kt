@@ -9,7 +9,6 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import com.example.shalendar.databinding.ActivityCalendarMainBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import java.io.BufferedReader
@@ -22,14 +21,13 @@ import kotlin.concurrent.thread
 
 
 class CalendarMain : AppCompatActivity() {
-    private var mBinding : ActivityCalendarMainBinding? = null
+    private var mBinding: ActivityCalendarMainBinding? = null
     private val binding get() = mBinding!!
     val calList = ArrayList<CalendarDay>()
+//
 
-
-    var add: Button? = null
     var dialog: AlertDialog? = null
-
+    var layout: LinearLayout? = null
 
 
 
@@ -39,22 +37,23 @@ class CalendarMain : AppCompatActivity() {
         setContentView(binding.root)
         val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
 
-
-        add = findViewById(R.id.cm_add_btn)
-
-        add!!.setOnClickListener { dialog!!.show() }
-
-        ShowDialog()
+        layout = findViewById(R.id.container)
 
 
 
+        val cm_add_friend = findViewById<View>(R.id.add_friend) as ImageButton
+        cm_add_friend.setBackgroundResource(R.drawable.add_friend)
+        cm_add_friend.setOnClickListener { dialog!!.show() } //
 
-        calList.add(CalendarDay.from(2022,11,3))
+        buildDialog()
+
+
+        calList.add(CalendarDay.from(2022, 11, 3))
 
         val calIntent = intent
         var id = calIntent.getStringExtra("calendar_id")
 
-        for (i in calList){
+        for (i in calList) {
             binding.cvCalendar.setDateSelected(i, true)
         }
         binding.cvCalendar.setOnDateChangedListener { widget, date, selected ->
@@ -63,7 +62,8 @@ class CalendarMain : AppCompatActivity() {
                     val url = URL("http://10.0.2.2:5000/schedule/$id")
                     val conn = url.openConnection() as HttpURLConnection
                     conn.requestMethod = "POST"
-                    val postData = "calendar_id=$id&year=${date.year}&month=${date.month}&day=${date.day}"
+                    val postData =
+                        "calendar_id=$id&year=${date.year}&month=${date.month}&day=${date.day}"
 
                     conn.doOutput = true
                     conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded")
@@ -87,7 +87,9 @@ class CalendarMain : AppCompatActivity() {
         }
     }
 
-    private fun ShowDialog() {
+
+
+    private fun buildDialog() {
         val builder = AlertDialog.Builder(this)
         val view: View = layoutInflater.inflate(R.layout.activity_dialog, null)
         val name = view.findViewById<EditText>(R.id.et_name)
@@ -95,12 +97,9 @@ class CalendarMain : AppCompatActivity() {
         builder.setTitle("친구 추가").setPositiveButton("확인")
         { dialog, which ->
             if (name.text.toString() == "") {
-                Toast.makeText(this, "닉네임을 입력해주세요" +
-                        ".", Toast.LENGTH_SHORT).show()
-            } else{
-                name.setText("")
-
-            } }
+                Toast.makeText(this, "닉네임을 설정해주세요.", Toast.LENGTH_SHORT).show()
+            } else {  addCard(name.text.toString())
+                name.setText("")} }
 
             .setNegativeButton("취소")
             { dialog, which -> }
@@ -108,18 +107,17 @@ class CalendarMain : AppCompatActivity() {
         dialog = builder.create()
     }
 
+    private fun addCard(name: String) {
+        val view = layoutInflater.inflate(R.layout.nickname_add, null)
+        val nameView = view.findViewById<TextView>(R.id.nick_name_text)
+        val delete = view.findViewById<Button>(R.id.nick_delete)
+        nameView.text = name
+        delete.setOnClickListener { layout!!.removeView(view) }
+        layout!!.addView(view)
+
+    }
 
 }
-
-
-
-
-
-//
-//        val calendar_list_add = findViewById<View>(R.id.btnAdd) as Button
-//        calendar_list_add.setOnClickListener {
-//            startActivity(Intent(this, AddCalendar::class.java))
-//        }
 
 
 

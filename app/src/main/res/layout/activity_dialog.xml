@@ -45,38 +45,5 @@
             android:freezesText="false" />
 
 
-<!--&lt;!&ndash;&lt;!&ndash;&ndash;&gt;     test&ndash;&gt;-->
-<!--    <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:padding="20dp">-->
-
-<!--            <Button-->
-<!--                android:id="@+id/dialog_append_button"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/background_btn_color"-->
-<!--                android:text="생성" />-->
-
-<!--            <Space-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="0.3"/>-->
-
-
-<!--            <Button-->
-<!--                android:id="@+id/dialog_close_button"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="@drawable/background_btn_color"-->
-<!--                android:text="닫기" />-->
-
-<!--        </LinearLayout>-->
-
-
-<!--    </LinearLayout>-->
 
 </LinearLayout>
