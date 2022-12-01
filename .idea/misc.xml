@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/background_btn_color.xml" value="0.118" />
         <entry key="app/src/main/res/layout/activity_add_calendar.xml" value="0.2234375" />
-        <entry key="app/src/main/res/layout/activity_calendar_main.xml" value="0.1598731884057971" />
+        <entry key="app/src/main/res/layout/activity_calendar_main.xml" value="0.32946547356204714" />
         <entry key="app/src/main/res/layout/activity_dialog.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_enquiry.xml" value="0.2234375" />
         <entry key="app/src/main/res/layout/activity_event.xml" value="0.1" />
