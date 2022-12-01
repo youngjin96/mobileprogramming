@@ -3,7 +3,7 @@
 
     <item
         android:drawable="@drawable/calendar_icon"
-        android:width="40dp"
-        android:height="35dp"/>
+        android:width="32dp"
+        android:height="30dp"/>
 
 </layer-list>
