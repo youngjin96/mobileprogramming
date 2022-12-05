@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shalendar.databinding.FriendListItemBinding
 
 data class Friends(
-    val text: String,
+    val text: String
 )
 
 class FriendListRVAdaptor(

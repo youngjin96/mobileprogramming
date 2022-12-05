@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shalendar.databinding.DialogEdittextBinding
 import com.example.shalendar.databinding.FriendListLayoutBinding
 
@@ -31,7 +32,7 @@ class FriendListActivity: AppCompatActivity() {
 
         //리사이클러 뷰 바인딩
         binding.rvFriendList.adapter = FriendListRVAdaptor(data, onClickDeleteIcon = {deleteFriends(it)})
-
+        binding.rvFriendList.layoutManager = LinearLayoutManager(this)
 
         //검색 버튼 누른 후 다이얼로그 실행
         binding.searchBtn.setOnClickListener() {
@@ -44,20 +45,21 @@ class FriendListActivity: AppCompatActivity() {
             builder.setPositiveButton("검색") {
                 dialogInterface: DialogInterface, i: Int -> 
                 if(editText.text != null) {
-
+                    val friends = Friends(editText.text.toString())
+                    data.add(friends)
+                    binding.rvFriendList.adapter?.notifyDataSetChanged()
                     Toast.makeText(applicationContext, "찾기!", Toast.LENGTH_SHORT).show()
                 }
 
             }
             builder.show()
-            val friends = Friends(editText.text.toString())
-            data.add(friends)
+
         }
 
     }
     //리사이클러 뷰 삭제
     fun deleteFriends(friends: Friends) {
         data.remove(friends)
-        //binding.rvFriendList.adapter?.notifyDataSetChanged()
+        binding.rvFriendList.adapter?.notifyDataSetChanged()
     }
 }
