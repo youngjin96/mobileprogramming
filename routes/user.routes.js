@@ -10,12 +10,9 @@ module.exports = app =>{
     // GET 개인정보변경 시 유저 정보 URL
     app.get("/user/information/:id", user.getUser);
 
-    // 전체 조회 
-    //app.post("/user", user.putUser);
-    //app.put("/user", user.updateUser);
-    //app.post("/user", user.searchUserByNick);
-    //app.get("/user", user.getAllUser);
-    //app.get("/user", user.getBirth);
-    //app.get("/user", user.getCalendarId);
-    //app.get("/user/:email", user.getAllUser);
+    // GET 유저 검색
+    app.get("/user/search/:nick_name", user.searchUser);
+
+    // PUT 개인정보변경
+    app.put("/user/update", user.update);
 };

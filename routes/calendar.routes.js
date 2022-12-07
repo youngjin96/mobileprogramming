@@ -8,5 +8,5 @@ module.exports = app =>{
     app.post("/calendar/create", calendar.create);
 
     // DELETE 캘린더 삭제
-    app.delete("/calendar/delete/:name", calendar.deleteCalendar);
+    app.delete("/calendar/delete/:calendarId/:calendarName/:userId", calendar.deleteCalendar);
 };

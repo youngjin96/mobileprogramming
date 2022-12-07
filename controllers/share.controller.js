@@ -1,11 +1,24 @@
 const Share = require("../models/share.model.js");
 
+exports.getShare = (req, res) => {
+    Share.getShare(req.params.userId, (err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while retrieving share."
+            });
+        else {
+            res.send(data);
+        }
+    });
+};
+
 exports.createShare = (req, res) => {
     var data = {
-        calendar_id: req.body.calendar_id,
-        friend_id : req.body.friend_id,
+        nickName : req.body.nick_name,
+        calendarId : req.body.calendar_id
     }
-    Share.createShare(data,(err, data) => {
+    Share.createShare(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -17,35 +30,33 @@ exports.createShare = (req, res) => {
         }
     });
 };
-exports.deleteShare = (req, res) => {
-    var data = {
-        calendar_id: req.body.calendar_id,
-        friend_id: req.body.friend_id,
-    }
-    Share.deleteShare(data,(err, data) => {
+
+exports.getFriend = (req, res) => {
+    Share.getFriend(req.params.calendarId, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while retrieving share."
             });
-        else 
-        {
+        else {
             res.send(data);
         }
     });
 };
-exports.checkShare = (req, res) => {
+
+exports.deleteShare = (req, res) => {
     var data = {
-        calendar_id: req.body.calendar_id,
+        calendarId : req.params.calendarId,
+        nickName : req.params.nickName,
+        userId : req.params.userId
     }
-    Share.checkShare(data,(err, data) => {
+    Share.deleteShare(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
                     err.message || "Some error occurred while retrieving share."
             });
-        else 
-        {
+        else {
             res.send(data);
         }
     });

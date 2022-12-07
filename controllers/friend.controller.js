@@ -31,10 +31,7 @@ exports.deleteFriend = (req, res) => {
 };
 
 exports.viewFriend = (req, res) => {
-    var data = {
-        user_id:req.body.user_id,
-    }
-    Friend.viewFriend(data, (err, data) => {
+    Friend.viewFriend(req.params.userId, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -44,13 +41,3 @@ exports.viewFriend = (req, res) => {
     });
 };
 
-exports.getAllFriend = (req, res) => {
-    Friend.getAllFriend((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        else res.send(data);
-    });
-};

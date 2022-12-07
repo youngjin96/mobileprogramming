@@ -46,12 +46,14 @@ exports.getUser = (req, res) => {
     });
 };
 
-exports.deleteUser = (req, res) => {//유저삭제
+exports.update = (req, res) => {
     var data = {
-        id : req.body.id,
-        nick_name : req.body.nick_name,
+        id: req.body.id,
+        email: req.body.email,
+        birth: req.body.birth,
+        nick_name: req.body.nick_name,
     }
-    User.searchUserByNick(data, (err, data) => {
+    User.update(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -61,11 +63,8 @@ exports.deleteUser = (req, res) => {//유저삭제
     });
 };
 
-exports.getCalendarId = (req, res) => {
-    var data = {
-        id:req.body.id,
-    }
-    User.getCalendarId(data, (err, data) => {
+exports.searchUser = (req, res) => {
+    User.searchUser(req.params.user_nickname, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
@@ -73,18 +72,4 @@ exports.getCalendarId = (req, res) => {
             });
         else res.send(data);
     });
-};
-
-exports.getBirth = (req, res) => {
-    var data = {
-        id:req.body.id,
-    }
-    User.getBirth(data, (err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving users."
-            });
-        else res.send(data);
-    });
-};
+}

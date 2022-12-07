@@ -50,79 +50,26 @@ User.info = (id, result) => {
     })
 }
 
-User.getAllUser = (email, result) => { // all serch
-    sql.query('SELECT * FROM user WHERE email = ?', [email], (err, res) => {
+User.searchUser = (nickName, result) => {
+    sql.query('SELECT * FROM user WHERE nick_name = ?', [nickName], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
-        result(null, res);
-    });
-};
-
-User.deleteUser = (data,result) => { // delete user
-    sql.query('delete From user where id = ?',[data.id], (err, res) => 
-    {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
+        console.log(res);
         result(null, res);
     });                
 };
 
-User.searchUser = result => {
-    sql.query('SELECT DISTINCT nick_name from user', (err, res) => {
+User.update = (data, result) => {
+    sql.query('UPDATE user SET email = ?, nick_name = ?, birth = ? WHERE id = ?', [data.email, data.nick_name, data.birth, data.id], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
         result(null, res);
-    });                
-};
-
-User.getBirth = (data, result) => {
-    sql.query('SELECT birth from user WHERE id = ?', [data.id], (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
-        result(null, res);
-    });                
-};
-
-User.getCalendarId = (data, result) => {
-    sql.query('SELECT calendar_id from share WHERE friend_id = ?', [data.id], (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
-        result(null, res);
-    });                
-};
-
-
-User.searchUserByNick = (data, result) => {
-    sql.query('SELECT * from user', (err, res) => {
-        var found_list = [];
-        for(let i=0; i<Object.keys(res).length; i++){
-            if(res[i].nick_name == data.nick_name)
-            found_list.push(res[i])
-        }
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
-        if(found_list.length == 0)
-            result(null, "유저 없음");
-        else
-            result(null, found_list);
     });
 };
 module.exports = User;

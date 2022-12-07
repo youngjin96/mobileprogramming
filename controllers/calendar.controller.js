@@ -4,8 +4,7 @@ const Calendar = require("../models/calendar.model.js");
 exports.create = (req, res) => {
     var data = {
         user_id: req.body.user_id,
-        name : req.body.name,
-        person_num : req.body.person_num,
+        calendar_name : req.body.calendar_name,
     }
     Calendar.create(data, (err, data) => {
         if (err)
@@ -30,7 +29,12 @@ exports.getCalendars = (req, res) => {
 };
 
 exports.deleteCalendar = (req, res) => {
-    Calendar.deleteCalendar(req.params.name, (err, data) => {
+    var data = {
+        calendarId : req.params.calendarId,
+        calendarName : req.params.calendarName,
+        userId : req.params.userId
+    }
+    Calendar.deleteCalendar(data, (err, data) => {
         if (err)
             res.status(500).send({
                 message:

@@ -8,61 +8,84 @@ const Friend = function (friend) {
 };
 
 Friend.createFriend = (data, result) => {
-    var tableName = "friend_" + data.user_id;
-    let query = `CREATE TABLE IF NOT EXISTS ${tableName} (
-        id INT AUTO_INCREMENT PRIMARY KEY, nick_name VARCHAR(255))`;
+    var my_nickname = "";
+    var friend_id = "";
 
-    sql.query(query, (err, res) => {
+    var tableName = "friend_" + data.user_id;
+    var tableName_f;
+
+    let query = `CREATE TABLE IF NOT EXISTS ${tableName} (id INT AUTO_INCREMENT PRIMARY KEY, nick_name VARCHAR(255))`;
+
+    //친구 id 가져오기
+    sql.query("SELECT id FROM user where nick_name = ?", [data.nick_name], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
             return;
         }
-        sql.query(`SELECT nick_name FROM ${tableName}`, (err, res) => {
+        friend_id = res[0].id;
+        tableName_f = "friend_" + friend_id;
+
+        let query_f = `CREATE TABLE IF NOT EXISTS ${tableName_f} (
+            id INT AUTO_INCREMENT PRIMARY KEY, nick_name VARCHAR(255))`;
+
+        // 친구 friend 테이블생성  
+        sql.query(query_f, (err, res) => {
             if (err) {
+                console.log("error: ", err);
                 result(err, null);
                 return;
             }
-            for(let i = 0; i < Object.keys(res).length; i++) {
-                if(res[i].nick_name == data.nick_name) {
-                    result(null, true);
-                    break;
-                } else if(i == Object.keys(res).length - 1) {
-                    sql.query(`INSERT INTO ${tableName} (nick_name) VALUES (?)`, [data.nick_name], (err, res) => {
-                        if (err) {
-                            console.log("error: ", err);
-                            result(err, null);
-                            return;
-                        }
-                        result(null, res);
-                    })
+            //insert
+            sql.query(`SELECT nick_name FROM ${tableName_f}`, (err, res) => {
+                if (err) {
+                    result(err, null);
+                    return;
                 }
-            }
+                sql.query(`INSERT INTO ${tableName_f} (nick_name) VALUES (?)`, [my_nickname], (err, res) => {
+                    if (err) {
+                        console.log("error: ", err);
+                        result(err, null);
+                        return;
+                    }
+                })
+            });
         });
-    })
-    // sql.query('SELECT * from user WHERE id = ?', [userId], (err, res) => {
-    //     if (err) {
-    //         console.log("error: ", err);
-    //         result(err, null);
-    //         return;
-    //     }
-    //     if(res.length == 0) {
-    //         result(null, "존재하지 않는 유저입니다.");
-    //     }
-    //     console.log(userId);
-    //     result(null, res);
-    // else {
-    //     sql.query('INSERT INTO friend (id, user_id, friend_id, nick_name) VALUES (?, ?, ?, ?)', [id, data.user_id, res[0].id, data.nick_name], (err, res) => {
-    //         if (err) {
-    //             console.log("error: ", err);
-    //             result(err, null);
-    //             return;
-    //         }
-    //         result(null, res);
-    //     });
-    // }
-    //});
+    });
 
+    //내 닉네임 가져오기  
+    sql.query("SELECT nick_name FROM user where id = ?", [data.user_id], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        my_nickname = res[0].nick_name;
+
+        //내 친구 테이블 생성  
+        sql.query(query, (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+
+            sql.query(`SELECT nick_name FROM ${tableName}`, (err, res) => { //insert
+                if (err) {
+                    result(err, null);
+                    return;
+                }
+                sql.query(`INSERT INTO ${tableName} (nick_name) VALUES (?)`, [data.nick_name], (err, res) => {
+                    if (err) {
+                        console.log("error: ", err);
+                        result(err, null);
+                        return;
+                    }
+                    result(null, res);
+                });
+            });
+        });
+    });
 };
 
 Friend.deleteFriend = (data, result) => {
@@ -76,12 +99,13 @@ Friend.deleteFriend = (data, result) => {
     });
 };
 
-Friend.viewFriend = (data, result) => {
-    sql.query('SELECT user_id, nick_name from friend', (err, res) => {
+Friend.viewFriend = (userId, result) => {
+    var tableName = "friend_" + userId;
+    var query = `SELECT * FROM ${tableName}`
+    sql.query(query, (err, res) => {
         var found_list = [];
         for (let i = 0; i < Object.keys(res).length; i++) {
-            if (res[i].user_id == data.user_id)
-                found_list.push(res[i].nick_name);
+            found_list.push(res[i]);
         }
         if (err) {
             console.log("error: ", err);
@@ -92,17 +116,6 @@ Friend.viewFriend = (data, result) => {
             result(null, "친구 없음");
         else
             result(null, found_list);
-    });
-};
-
-Friend.getAllFriend = result => {
-    sql.query('SELECT * from friend', (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
-        result(null, res);
     });
 };
 
